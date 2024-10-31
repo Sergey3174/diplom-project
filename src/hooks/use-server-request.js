@@ -17,6 +17,7 @@ export const useServerRequest = () => {
 				'saveTransaction',
 				'saveCategory',
 				'removeTransactionServer',
+				'saveAccount',
 			].includes(operation)
 				? params
 				: [session, ...params];

@@ -15,3 +15,4 @@ export * from './fetch-transactions';
 export * from './save-transaction';
 export * from './remove-transaction-server';
 export * from './save-category';
+export * from './save-account';

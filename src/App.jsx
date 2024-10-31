@@ -56,6 +56,7 @@ function App() {
 					<Route path="/add-transactions" element={<AddPage />} />
 					<Route path="/edit-transactions/:id" element={<AddPage />} />
 					<Route path="/add-categories" element={<AddPage />} />
+					<Route path="/add-account" element={<AddPage />} />
 					<Route path="/analitics" element={<div>аналитика</div>} />
 				</Route>
 				<Route path="/register" element={<div>Заглушка</div>} />

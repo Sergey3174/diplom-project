@@ -20,21 +20,45 @@
   "accounts": [
     {
       "id": "1",
+      "type_accounts": "1",
       "userId": 1,
       "name": "Банковский счет",
       "created_at": "2024-04-25T10:05:00Z"
     },
     {
       "id": "2",
+      "type_accounts": "1",
       "userId": 1,
       "name": "Наличные",
       "created_at": "2024-04-25T10:10:00Z"
     },
     {
       "id": "3",
+      "type_accounts": "1",
       "userId": 2,
       "name": "Электронный кошелек",
       "created_at": "2024-04-26T11:20:00Z"
+    },
+    {
+      "userId": "1",
+      "name": "Сбербанк",
+      "type_accounts": "2",
+      "created_at": "2024-10-30T21:20:04.132Z",
+      "id": "nVetoxf"
+    },
+    {
+      "userId": "2",
+      "name": "wedewdwedwedwed",
+      "type_accounts": "1",
+      "created_at": "2024-10-30T21:51:02.941Z",
+      "id": "rg9ISTW"
+    },
+    {
+      "userId": "2",
+      "name": "wfwfwefwe",
+      "type_accounts": "2",
+      "created_at": "2024-10-30T21:52:02.978Z",
+      "id": "82ZPltg"
     }
   ],
   "categories": [
@@ -73,6 +97,18 @@
       "name": "Автомобиль",
       "type": "expense",
       "id": "iL8YqYR"
+    },
+    {
+      "userId": "2",
+      "name": "wedewdwedwed",
+      "type": "expense",
+      "id": "yujsfgk"
+    },
+    {
+      "userId": "1",
+      "name": "кек",
+      "type": "expense",
+      "id": "RjMjfdD"
     }
   ],
   "transactions": [
@@ -145,6 +181,36 @@
       "description": "Колеса",
       "transaction_date": "2024-10-30T19:41:30.387Z",
       "id": "tQJsWC0"
+    },
+    {
+      "userId": "1",
+      "accountId": "nVetoxf",
+      "categoryId": "4",
+      "amount": 122222,
+      "type": "income",
+      "description": "цувцувцув",
+      "transaction_date": "2024-10-30T21:20:54.514Z",
+      "id": "8bZyvTz"
+    },
+    {
+      "userId": "2",
+      "accountId": "3",
+      "categoryId": "4",
+      "amount": 12121212,
+      "type": "income",
+      "description": "weewfewfwef",
+      "transaction_date": "2024-10-30T21:51:26.878Z",
+      "id": "NvGuSRe"
+    }
+  ],
+  "type_accounts": [
+    {
+      "id": "1",
+      "name": "Вклад"
+    },
+    {
+      "id": "2",
+      "name": "Дебетовая карта"
     }
   ],
   "sessions": [
@@ -194,13 +260,22 @@
       "id": 5
     },
     {
-      "hash": "0.60740777974600668187576957279816269874572753906250",
+      "hash": "0.26745452041894157702017764677293598651885986328125",
       "user": {
         "id": "1",
         "login": "ivan",
         "password": "qwe123"
       },
       "id": 6
+    },
+    {
+      "hash": "0.03196656621088189709212201705668121576309204101563",
+      "user": {
+        "id": "1",
+        "login": "ivan",
+        "password": "qwe123"
+      },
+      "id": 7
     }
   ]
 }

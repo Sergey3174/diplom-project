@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
-import { FormCategoty, FormTransaction } from './components';
+import { FormAccount, FormCategoty, FormTransaction } from './components';
 
 const AddPageContainer = ({ className }) => {
 	const requestServer = useServerRequest();
@@ -20,6 +20,8 @@ const AddPageContainer = ({ className }) => {
 				return <FormTransaction onSave={onSave} />;
 			case '/add-categories':
 				return <FormCategoty onSave={onSave} />;
+			case '/add-account':
+				return <FormAccount onSave={onSave} />;
 			default:
 				return;
 		}

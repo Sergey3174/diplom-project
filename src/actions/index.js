@@ -18,3 +18,4 @@ export * from './remove-transaction-async';
 export * from './remove-transaction';
 export * from './set-filter';
 export * from './reset-filter';
+export * from './set-accounts-types';

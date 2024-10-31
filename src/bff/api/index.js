@@ -21,3 +21,5 @@ export * from './get-accounts';
 export * from './add-transaction';
 export * from './delete-transaction';
 export * from './add-category';
+export * from './get-accounts-types';
+export * from './add-account';
