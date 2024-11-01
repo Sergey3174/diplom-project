@@ -1,5 +1,7 @@
-import { addAccount } from '../api';
+import { addAccount, updateAccount } from '../api';
 
 export const saveAccount = async (newAccountData) => {
-	await addAccount(newAccountData);
+	newAccountData.id === ''
+		? await addAccount(newAccountData)
+		: await updateAccount(newAccountData);
 };

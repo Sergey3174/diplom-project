@@ -3,6 +3,7 @@ import TRASH from '../../../../assets/trash.png';
 import PENCIL from '../../../../assets/pencil.png';
 import { useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../../../hooks';
+import { IconButton } from '../../../../components';
 
 const HistoryItemContainer = ({
 	className,
@@ -30,12 +31,18 @@ const HistoryItemContainer = ({
 				<div className="description">{description}</div>
 				<div className="account">{name}</div>
 			</div>
-			<div className="icon" onClick={() => navigate(`/edit-transactions/${id}`)}>
-				<img src={PENCIL} />
-			</div>
-			<div className="icon" onClick={deleteItem}>
-				<img src={TRASH} />
-			</div>
+			<IconButton
+				icon={PENCIL}
+				onClick={() => navigate(`/transaction/${id}`)}
+				width="30px"
+				margin="0 0 0 10px"
+			/>
+			<IconButton
+				onClick={deleteItem}
+				icon={TRASH}
+				width="30px"
+				margin="0 0 0 10px"
+			/>
 		</div>
 	);
 };
@@ -67,17 +74,5 @@ export const HistoryItem = styled(HistoryItemContainer)`
 	}
 	& .account {
 		width: 25%;
-	}
-
-	& .icon {
-		width: 30px;
-		margin-left: 15px;
-		& > img {
-			width: 100%;
-		}
-	}
-
-	& .icon:hover {
-		cursor: pointer;
 	}
 `;

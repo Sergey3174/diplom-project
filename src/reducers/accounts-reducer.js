@@ -17,6 +17,11 @@ export const accountsReducer = (state = initialAccountsState, action) => {
 				...state,
 				typeAccounts: action.payload,
 			};
+		case ACTION_TYPE.ADD_ACCOUNT_TYPE:
+			return {
+				...state,
+				typeAccounts: [...state.typeAccounts, action.payload],
+			};
 
 		// case ACTION_TYPE.RESET_POST_DATA:
 		// 	return initialPostState;

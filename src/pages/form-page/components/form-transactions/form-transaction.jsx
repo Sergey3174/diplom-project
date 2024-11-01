@@ -2,12 +2,7 @@ import styled from 'styled-components';
 import { Button, Input, Select } from '../../../../components';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-	selectAccounts,
-	selectCategories,
-	selectTransactions,
-	selectUserId,
-} from '../../../../selectors';
+import { selectAccounts, selectCategories, selectUserId } from '../../../../selectors';
 import { useMatch, useParams } from 'react-router-dom';
 
 const FormTransactionContainer = ({ className, onSave }) => {
@@ -19,12 +14,11 @@ const FormTransactionContainer = ({ className, onSave }) => {
 	const [amount, setAmount] = useState('');
 	const [description, setDescription] = useState('');
 
-	const isCreating = !!useMatch('/add-transactions');
+	const isCreating = !!useMatch('/transaction');
 
 	const userId = useSelector(selectUserId);
 	const { categories } = useSelector(selectCategories);
 	const { accounts } = useSelector(selectAccounts);
-	const { transactions } = useSelector(selectTransactions);
 
 	const { id: idTransaction } = useParams();
 
@@ -45,7 +39,7 @@ const FormTransactionContainer = ({ className, onSave }) => {
 					setDescription(transaction.description);
 				});
 		}
-	}, [isCreating, idTransaction, transactions]);
+	}, [isCreating, idTransaction]);
 
 	const handleSelectChange = (name, value) => {
 		setSelectValues((prevValues) => ({
@@ -83,7 +77,7 @@ const FormTransactionContainer = ({ className, onSave }) => {
 				onSelectChange={handleSelectChange}
 			/>
 			<Select
-				label="Cчет"
+				label="Счет"
 				name="select3"
 				data={accounts}
 				value={selectValues.select3}
@@ -98,6 +92,7 @@ const FormTransactionContainer = ({ className, onSave }) => {
 				width="50%"
 				onClick={(event) =>
 					onSave(event, 'saveTransaction', {
+						id: !isCreating ? idTransaction : '',
 						userId,
 						accountId: selectValues.select3,
 						categoryId: selectValues.select2,

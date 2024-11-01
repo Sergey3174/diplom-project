@@ -2,10 +2,13 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { selectCategories, selectTransactions } from '../../../../../../selectors';
 import { calculateAmount } from '../../../../../../utils';
+import { useNavigate } from 'react-router-dom';
 
 const CategoriesContainer = ({ className }) => {
 	const { categories } = useSelector(selectCategories);
 	const { transactions } = useSelector(selectTransactions);
+
+	const navigate = useNavigate();
 
 	return (
 		<div className={className}>
@@ -15,7 +18,11 @@ const CategoriesContainer = ({ className }) => {
 					{categories.map(({ type, id, name }) => {
 						if (type === 'income') {
 							return (
-								<div className="item-categories" key={id}>
+								<div
+									className="item-categories"
+									key={id}
+									onClick={() => navigate(`/category/${id}`)}
+								>
 									<span>{name}</span>
 									<span>
 										{calculateAmount(transactions, id, 'category')}
@@ -34,7 +41,11 @@ const CategoriesContainer = ({ className }) => {
 					{categories.map(({ type, id, name }) => {
 						if (type === 'expense') {
 							return (
-								<div className="item-categories" key={id}>
+								<div
+									className="item-categories"
+									key={id}
+									onClick={() => navigate(`/category/${id}`)}
+								>
 									<span>{name}</span>
 									<span>
 										{calculateAmount(transactions, id, 'category')}

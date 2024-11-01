@@ -193,6 +193,16 @@
       "description": "За сайт",
       "transaction_date": "2024-11-01T11:09:36.235Z",
       "id": "k5v5kQ3"
+    },
+    {
+      "userId": "1",
+      "accountId": "nVetoxf",
+      "categoryId": "1",
+      "amount": 5000,
+      "type": "income",
+      "description": "wedewd",
+      "transaction_date": "2024-11-01T11:47:07.801Z",
+      "id": "ywbYfPQ"
     }
   ],
   "type_accounts": [

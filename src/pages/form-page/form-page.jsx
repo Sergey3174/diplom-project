@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
 import { FormAccount, FormCategoty, FormTransaction } from './components';
 
-const AddPageContainer = ({ className }) => {
+const FormPageContainer = ({ className }) => {
 	const requestServer = useServerRequest();
 
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
+	const { id } = useParams();
 
 	const onSave = (event, operation, data) => {
 		event.preventDefault();
@@ -16,21 +17,24 @@ const AddPageContainer = ({ className }) => {
 
 	const Form = () => {
 		switch (pathname) {
-			case '/add-transactions':
+			case `/transaction/${id}`:
+			case '/transaction':
 				return <FormTransaction onSave={onSave} />;
-			case '/add-categories':
+			case `/category/${id}`:
+			case '/category':
 				return <FormCategoty onSave={onSave} />;
-			case '/add-account':
+			case `/account/${id}`:
+			case '/account':
 				return <FormAccount onSave={onSave} />;
 			default:
-				return;
+				return <div>Привет</div>;
 		}
 	};
 
 	return <div className={className}>{Form()}</div>;
 };
 
-export const AddPage = styled(AddPageContainer)`
+export const FormPage = styled(FormPageContainer)`
 	width: 50%;
 	margin: 10% auto 0;
 	border: 1px solid #e0e0e0;

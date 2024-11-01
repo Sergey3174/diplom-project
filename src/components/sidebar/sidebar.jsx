@@ -9,7 +9,7 @@ const SideBarContainer = ({ className }) => {
 	const menuItems = [
 		{ name: 'Главная', to: '/' },
 		{ name: 'История', to: '/history' },
-		{ name: 'Аналитика', to: '/login' },
+		{ name: 'Аналитика', to: '/analitics' },
 	];
 	return (
 		<div className={className}>

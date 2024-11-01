@@ -18,16 +18,16 @@ const MainPageContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-			<Card to="/add-transactions" content={<Transactions type="income" />}>
+			<Card to="/transaction" content={<Transactions type="income" />}>
 				Доходы
 			</Card>
-			<Card to="/add-transactions" content={<Transactions type="expense" />}>
+			<Card to="/transaction" content={<Transactions type="expense" />}>
 				Расходы
 			</Card>
-			<Card to="/add-categories" content={<Categories />}>
+			<Card to="/category" content={<Categories />}>
 				Категории
 			</Card>
-			<Card to="/add-account" content={<Accounts />}>
+			<Card to="/account" content={<Accounts />}>
 				Счета
 			</Card>
 		</div>

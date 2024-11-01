@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { PrivateRoute, SideBar } from './components';
-import { Authorization, MainPage, HistoryPage, AddPage } from './pages';
+import { Authorization, MainPage, HistoryPage, FormPage, Analitics } from './pages';
 
 import styled from 'styled-components';
 import { useLayoutEffect } from 'react';
@@ -53,11 +53,13 @@ function App() {
 				>
 					<Route path="/" element={<MainPage />} />
 					<Route path="/history" element={<HistoryPage />} />
-					<Route path="/add-transactions" element={<AddPage />} />
-					<Route path="/edit-transactions/:id" element={<AddPage />} />
-					<Route path="/add-categories" element={<AddPage />} />
-					<Route path="/add-account" element={<AddPage />} />
-					<Route path="/analitics" element={<div>аналитика</div>} />
+					<Route path="/transaction" element={<FormPage />} />
+					<Route path="/transaction/:id" element={<FormPage />} />
+					<Route path="/category" element={<FormPage />} />
+					<Route path="/category/:id" element={<FormPage />} />
+					<Route path="/account" element={<FormPage />} />
+					<Route path="/account/:id" element={<FormPage />} />
+					<Route path="/analitics" element={<Analitics />} />
 				</Route>
 				<Route path="/register" element={<div>Заглушка</div>} />
 				<Route path="/login" element={<Authorization />} />

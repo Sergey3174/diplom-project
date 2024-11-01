@@ -1,0 +1,140 @@
+import styled from 'styled-components';
+import { Button, IconButton, Input, Select } from '../../../../components';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAccounts, selectAccountsTypes, selectUserId } from '../../../../selectors';
+import { useMatch, useParams } from 'react-router-dom';
+import ADD_ICON from '../../../../assets/add-icon.svg';
+import V_ICON from '../../../../assets/V.png';
+import X_ICON from '../../../../assets/X.png';
+import { addTypeAccountAsync } from '../../../../actions';
+import { useServerRequest } from '../../../../hooks';
+
+const FormAccountContainer = ({ className, onSave }) => {
+	const [select, setSelect] = useState('');
+	const [nameAccount, setNameAccount] = useState('');
+	const [editing, setEditing] = useState(false);
+
+	const typeAccounts = useSelector(selectAccountsTypes);
+	const { accounts } = useSelector(selectAccounts);
+	const isCreating = !!useMatch('/account');
+
+	const userId = useSelector(selectUserId);
+
+	const { id: idAccount } = useParams();
+
+	useEffect(() => {
+		if (isCreating) {
+			return;
+		} else {
+			const account = accounts.find((acc) => acc.id === idAccount);
+			setSelect(account.type_accounts);
+			setNameAccount(account.name);
+		}
+	}, [isCreating, accounts, idAccount]);
+
+	const onNameChange = ({ target }) => setNameAccount(target.value);
+
+	const handleSelectChange = (name, value) => setSelect(value);
+
+	const requestServer = useServerRequest();
+	const [newTypeAccount, setNewTypeAccount] = useState('');
+	const onTypeChange = ({ target }) => setNewTypeAccount(target.value);
+	const dispatch = useDispatch();
+	const handleAddTypeAccount = () => {
+		dispatch(addTypeAccountAsync(requestServer, newTypeAccount)).then(() =>
+			setEditing(false),
+		);
+	};
+
+	return (
+		<form className={className}>
+			<h3>Добавить счет</h3>
+
+			<div className="category-input">
+				{!editing ? (
+					<>
+						<Select
+							label="Тип категории"
+							name="select1"
+							data={typeAccounts}
+							value={select}
+							onSelectChange={handleSelectChange}
+						/>
+
+						<IconButton
+							onClick={() => setEditing(true)}
+							icon={ADD_ICON}
+							width="30px"
+							position="absolute"
+							right="-35px"
+						/>
+					</>
+				) : (
+					<>
+						<div>Новая категория</div>
+						<Input
+							width="70%"
+							onChange={onTypeChange}
+							value={newTypeAccount}
+							margin="10px 0"
+						/>
+						<div className="button-confirm-cancel">
+							<IconButton
+								icon={V_ICON}
+								width="30px"
+								onClick={handleAddTypeAccount}
+							/>
+							<IconButton
+								icon={X_ICON}
+								width="20px"
+								onClick={() => setEditing(false)}
+							/>
+						</div>
+					</>
+				)}
+			</div>
+			<div>Название счета</div>
+			<Input
+				width="100%"
+				disabled={editing}
+				onChange={onNameChange}
+				value={nameAccount}
+			/>
+
+			<Button
+				width="50%"
+				onClick={(event) =>
+					onSave(event, 'saveAccount', {
+						id: !isCreating ? idAccount : '',
+						userId,
+						name: nameAccount,
+						typeAccount: select,
+					})
+				}
+			>
+				Отправить
+			</Button>
+		</form>
+	);
+};
+
+export const FormAccount = styled(FormAccountContainer)`
+	width: 80%;
+	margin: 0 auto;
+
+	& .category-input {
+		display: flex;
+		align-items: center;
+		position: relative;
+		gap: 5px;
+		justify-content: space-between;
+	}
+
+	& .button-confirm-cancel {
+		display: flex;
+		align-items: center;
+		position: absolute;
+		right: -50px;
+	}
+`;

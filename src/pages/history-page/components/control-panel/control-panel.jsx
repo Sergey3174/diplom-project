@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Select } from '../../../../components';
+import { IconButton, Select } from '../../../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAccounts, selectFilter } from '../../../../selectors';
 import { RESET_FILTER, setFilter } from '../../../../actions';
@@ -41,10 +41,12 @@ const ControlPanelContainer = ({ className }) => {
 			/>
 
 			<div className="img-button">
-				{isFilter && <img onClick={handleResetFilter} src={UPDATE} />}
+				{isFilter && (
+					<IconButton icon={UPDATE} onClick={handleResetFilter} width="40px" />
+				)}
 			</div>
-			<Link to="/add-transactions">
-				<img className="icon" src={ADD_ICON} />
+			<Link to="/transaction">
+				<IconButton icon={ADD_ICON} width="40px" />
 			</Link>
 		</div>
 	);
@@ -53,13 +55,4 @@ const ControlPanelContainer = ({ className }) => {
 export const ControlPanel = styled(ControlPanelContainer)`
 	display: flex;
 	align-items: center;
-
-	& .img-button {
-		width: 40px;
-	}
-
-	img {
-		width: 40px;
-		cursor: pointer;
-	}
 `;

@@ -1,5 +1,7 @@
-import { addCategory } from '../api';
+import { addCategory, updateCategory } from '../api';
 
 export const saveCategory = async (newCategoryData) => {
-	await addCategory(newCategoryData);
+	newCategoryData.id === ''
+		? await addCategory(newCategoryData)
+		: await updateCategory(newCategoryData);
 };
