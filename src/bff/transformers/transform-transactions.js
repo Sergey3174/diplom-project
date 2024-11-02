@@ -1,3 +1,5 @@
+import { transformDate } from '../utils';
+
 export const transformTransactions = (dbTransactions) => ({
 	id: dbTransactions.id,
 	userId: dbTransactions.userId,
@@ -6,6 +8,6 @@ export const transformTransactions = (dbTransactions) => ({
 	amount: dbTransactions.amount,
 	type: dbTransactions.type,
 	description: dbTransactions.description,
-	transactionDate: dbTransactions.transaction_date,
+	transactionDate: transformDate(dbTransactions.transaction_date),
 	createdAt: dbTransactions.created_at,
 });

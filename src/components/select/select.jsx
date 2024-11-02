@@ -37,7 +37,7 @@ const SelectContainer = ({
 };
 
 export const Select = styled(SelectContainer)`
-	width: 100%;
+	width: ${({ width = '100%' }) => width};
 	margin: 10px 0;
 	display: flex;
 	justify-content: space-between;

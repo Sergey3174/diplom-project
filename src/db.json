@@ -109,18 +109,6 @@
       "name": "Инвестиции",
       "type": "income",
       "id": "RjMjfdD"
-    },
-    {
-      "userId": "1",
-      "name": "цуцуацуацу",
-      "type": "income",
-      "id": "wD1mlae"
-    },
-    {
-      "userId": "1",
-      "name": "орнпонпонпо",
-      "type": "income",
-      "id": "KyDP2d8"
     }
   ],
   "transactions": [
@@ -128,7 +116,7 @@
       "userId": "1",
       "accountId": "1",
       "categoryId": 2,
-      "amount": 150,
+      "amount": 1750,
       "type": "expense",
       "description": "Покупка продуктов",
       "transaction_date": "2024-10-29T11:01:00.222Z",
@@ -166,33 +154,23 @@
     },
     {
       "userId": "1",
-      "accountId": "nVetoxf",
-      "categoryId": "3",
-      "amount": 15000,
-      "type": "expense",
-      "description": "За хату",
-      "transaction_date": "2024-11-01T10:34:08.536Z",
-      "id": "mKaGRVR"
+      "accountId": "1",
+      "categoryId": "1",
+      "amount": 7600,
+      "type": "income",
+      "description": "зп за май",
+      "transaction_date": "2024-11-01T19:05:31.307Z",
+      "id": "pQAlPMm"
     },
     {
       "userId": "1",
-      "accountId": "hLcp96F",
+      "accountId": "1",
       "categoryId": "RjMjfdD",
-      "amount": 2000,
+      "amount": 2300,
       "type": "income",
-      "description": "bitcoin",
-      "transaction_date": "2024-11-01T10:50:08.908Z",
-      "id": "Vlm-5Zn"
-    },
-    {
-      "userId": "1",
-      "accountId": "hLcp96F",
-      "categoryId": "wD1mlae",
-      "amount": 500,
-      "type": "income",
-      "description": "За сайт",
-      "transaction_date": "2024-11-01T11:09:36.235Z",
-      "id": "k5v5kQ3"
+      "description": "крипта",
+      "transaction_date": "2024-11-02T08:21:14.188Z",
+      "id": "vcmCsnI"
     }
   ],
   "type_accounts": [
@@ -211,7 +189,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.05252110891913108758899397798813879489898681640625",
+      "hash": "0.26174729006418462340377573127625510096549987792969",
       "user": {
         "id": "1",
         "login": "ivan",
@@ -220,67 +198,13 @@
       "id": 1
     },
     {
-      "hash": "0.20716702958437194226348765369039028882980346679688",
+      "hash": "0.04900300021984538290098498691804707050323486328125",
       "user": {
         "id": "1",
         "login": "ivan",
         "password": "qwe123"
       },
       "id": 2
-    },
-    {
-      "hash": "0.54977884376617769390804824070073664188385009765625",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 3
-    },
-    {
-      "hash": "0.16245130364633841857369134231703355908393859863281",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 4
-    },
-    {
-      "hash": "0.97638081466979276257234232616610825061798095703125",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 5
-    },
-    {
-      "hash": "0.26745452041894157702017764677293598651885986328125",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 6
-    },
-    {
-      "hash": "0.73622255074979769950971331127220764756202697753906",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 7
-    },
-    {
-      "hash": "0.16163274764401935890134609508095309138298034667969",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 8
     }
   ]
 }
