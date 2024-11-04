@@ -12,7 +12,7 @@ export * from './remove-post-async';
 export * from './reset-post-data';
 
 export * from './set-transactions-data';
-export * from './load-transactions-async';
+export * from './load-data-async';
 export * from './set-accounts-data';
 export * from './remove-transaction-async';
 export * from './remove-transaction';

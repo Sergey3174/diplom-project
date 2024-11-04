@@ -1,12 +1,10 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectCategories, selectTransactions } from '../../../../../../selectors';
-import { calculateAmount } from '../../../../../../utils';
+import { selectCategories } from '../../../../../../selectors';
 import { useNavigate } from 'react-router-dom';
 
 const CategoriesContainer = ({ className }) => {
 	const { categories } = useSelector(selectCategories);
-	const { transactions } = useSelector(selectTransactions);
 
 	const navigate = useNavigate();
 
@@ -15,7 +13,7 @@ const CategoriesContainer = ({ className }) => {
 			<div className="card-categories">
 				Доходы
 				<div className="item-categories-conrainer">
-					{categories.map(({ type, id, name }) => {
+					{categories.map(({ type, id, name, amount }) => {
 						if (type === 'income') {
 							return (
 								<div
@@ -24,9 +22,7 @@ const CategoriesContainer = ({ className }) => {
 									onClick={() => navigate(`/category/${id}`)}
 								>
 									<span>{name}</span>
-									<span>
-										{calculateAmount(transactions, id, 'category')}
-									</span>
+									<span>{amount}</span>
 								</div>
 							);
 						} else {
@@ -38,7 +34,7 @@ const CategoriesContainer = ({ className }) => {
 			<div className="card-categories">
 				Расходы
 				<div className="item-categories-conrainer">
-					{categories.map(({ type, id, name }) => {
+					{categories.map(({ type, id, name, amount }) => {
 						if (type === 'expense') {
 							return (
 								<div
@@ -47,9 +43,7 @@ const CategoriesContainer = ({ className }) => {
 									onClick={() => navigate(`/category/${id}`)}
 								>
 									<span>{name}</span>
-									<span>
-										{calculateAmount(transactions, id, 'category')}
-									</span>
+									<span>{amount}</span>
 								</div>
 							);
 						} else {

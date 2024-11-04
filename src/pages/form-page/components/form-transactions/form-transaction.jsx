@@ -4,16 +4,12 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAccounts, selectCategories, selectUserId } from '../../../../selectors';
 import { useMatch, useParams } from 'react-router-dom';
+import { useSelectValues } from '../../../../hooks';
 
 const FormTransactionContainer = ({ className, onSave }) => {
-	const [selectValues, setSelectValues] = useState({
-		select1: '',
-		select2: '',
-		select3: '',
-	});
+	const [selectValues, handleSelectChange] = useSelectValues(3);
 	const [amount, setAmount] = useState('');
 	const [description, setDescription] = useState('');
-
 	const isCreating = !!useMatch('/transaction');
 
 	const userId = useSelector(selectUserId);
@@ -29,24 +25,15 @@ const FormTransactionContainer = ({ className, onSave }) => {
 			fetch(`http://localhost:3005/transactions/${idTransaction}`)
 				.then((data) => data.json())
 				.then((transaction) => {
-					setSelectValues({
-						select1: transaction.type,
-						select2: transaction.categoryId,
-						select3: transaction.accountId,
-					});
+					handleSelectChange('select1', transaction.type);
+					handleSelectChange('select2', transaction.categoryId);
+					handleSelectChange('select3', transaction.accountId);
 
 					setAmount(transaction.amount);
 					setDescription(transaction.description);
 				});
 		}
-	}, [isCreating, idTransaction]);
-
-	const handleSelectChange = (name, value) => {
-		setSelectValues((prevValues) => ({
-			...prevValues,
-			[name]: value,
-		}));
-	};
+	}, [isCreating, idTransaction, handleSelectChange]);
 
 	const onAmountChange = ({ target }) => setAmount(target.value);
 	const onDescriptionChange = ({ target }) => setDescription(target.value);

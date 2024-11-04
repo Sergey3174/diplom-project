@@ -1,27 +1,29 @@
 import styled from 'styled-components';
 import { Card } from './components';
-import { useEffect } from 'react';
-import { useServerRequest } from '../../hooks';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUserId } from '../../selectors';
-import { loadTransactionsAsync } from '../../actions';
+
+import { useRequestData } from '../../hooks';
+
 import { Accounts, Categories, Transactions } from './components/card/components';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../selectors';
 
 const MainPageContainer = ({ className }) => {
 	const userId = useSelector(selectUserId);
-	const serverRequest = useServerRequest();
-	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(loadTransactionsAsync(serverRequest, userId));
-	}, [dispatch, serverRequest, userId]);
+	useRequestData(userId);
 
 	return (
 		<div className={className}>
-			<Card to="/transaction" content={<Transactions type="income" />}>
+			<Card
+				to="/transaction"
+				content={<Transactions type="income" userId={userId} />}
+			>
 				Доходы
 			</Card>
-			<Card to="/transaction" content={<Transactions type="expense" />}>
+			<Card
+				to="/transaction"
+				content={<Transactions type="expense" userId={userId} />}
+			>
 				Расходы
 			</Card>
 			<Card to="/category" content={<Categories />}>

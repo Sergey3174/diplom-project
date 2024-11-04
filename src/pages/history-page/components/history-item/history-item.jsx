@@ -19,8 +19,6 @@ const HistoryItemContainer = ({
 	const navigate = useNavigate();
 
 	const deleteItem = () => {
-		// dispatch(removeTransactionAsync(serverRequest, id));
-
 		serverRequest('removeTransactionServer', id).then(() => refreshFlag());
 	};
 	return (

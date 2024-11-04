@@ -1,9 +1,20 @@
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectTransactions } from '../../../../../../selectors';
+import { useEffect, useState } from 'react';
+import { useServerRequest } from '../../../../../../hooks';
 
-const TransactionsContainer = ({ className, type }) => {
-	const { transactions } = useSelector(selectTransactions);
+const TransactionsContainer = ({ className, type, userId }) => {
+	const [transactions, setTransactions] = useState([]);
+	const serverRequest = useServerRequest();
+
+	useEffect(() => {
+		serverRequest('fetchTransactions', userId, 1, 3, { param1: type }).then(
+			({ res }) => {
+				const { transactions } = res.transactions;
+				setTransactions(transactions);
+			},
+		);
+	}, [serverRequest, userId, type]);
+
 	return (
 		<div className={className}>
 			<div className="card-transactions">

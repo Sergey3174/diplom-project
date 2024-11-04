@@ -11,11 +11,11 @@ import {
 	Legend,
 } from 'chart.js';
 import { useSelector } from 'react-redux';
-import { selectAccounts, selectCategories, selectTransactions } from '../../selectors';
+import { selectAccounts, selectCategories, selectUserId } from '../../selectors';
 import styled from 'styled-components';
-import { calculateAmount } from '../../utils';
 import { Select } from '../../components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRequestData, useSelectValues, useServerRequest } from '../../hooks';
 
 Chart.register(
 	ArcElement,
@@ -29,83 +29,56 @@ Chart.register(
 );
 
 export const AnaliticsContainer = ({ className }) => {
-	const { transactions } = useSelector(selectTransactions);
+	const userId = useSelector(selectUserId);
+	const serverRequest = useServerRequest();
+
+	useRequestData(userId);
+
 	const { categories } = useSelector(selectCategories);
 	const { accounts } = useSelector(selectAccounts);
 
-	const [selectValues, setSelectValues] = useState({
+	const [selectValues, handleSelectChange] = useSelectValues(2, {
 		select1: 'income',
-		select2: accounts[0].id,
+		select2: accounts[0]?.id || '',
 	});
 
-	const handleSelectChange = (name, value) => {
-		setSelectValues((prevValues) => ({
-			...prevValues,
-			[name]: value,
-		}));
-	};
+	const [accountTransactionData, setAccountTransactionData] = useState([]);
 
-	const categoryData = categories
-		.filter(({ type }) => type === selectValues.select1)
-		.reduce(
-			(acc, { name, id }) => ({
-				...acc,
-				[name]: calculateAmount(transactions, id, 'category'),
-			}),
-			{},
+	useEffect(() => {
+		serverRequest('fecthAccountBalance', userId, selectValues.select2).then((data) =>
+			setAccountTransactionData(data.res.accTransactions),
 		);
+	}, [selectValues.select2, serverRequest, userId]);
 
-	const accountData = accounts.reduce(
-		(acc, { name, id }) => ({
-			...acc,
-			[name]: calculateAmount(transactions, id, 'account'),
-		}),
-		{},
-	);
-
-	const accountTransactionData = transactions
-		.filter(({ accountId }) => accountId === selectValues.select2)
-		.reduce(
-			(acc, { transactionDate, amount, type }) => {
-				const currentAmount = acc.currentAmount;
-				const newAmount =
-					type === 'income' ? currentAmount + amount : currentAmount - amount;
-
-				acc.accTransactions.push({ transactionDate, balance: newAmount });
-				acc.currentAmount = newAmount;
-
-				return acc;
-			},
-			{ currentAmount: 0, accTransactions: [] },
-		);
+	const categoryData = categories.filter(({ type }) => type === selectValues.select1);
 
 	const pieData = {
-		labels: Object.keys(categoryData),
+		labels: categoryData.map((cat) => cat.name),
 		datasets: [
 			{
-				data: Object.values(categoryData),
+				data: categoryData.map((cat) => cat.amount),
 				backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
 			},
 		],
 	};
 
 	const barData = {
-		labels: Object.keys(accountData),
+		labels: accounts.map((acc) => acc.name),
 		datasets: [
 			{
 				label: 'Сумма по счетам',
-				data: Object.values(accountData),
+				data: accounts.map((acc) => acc.amount),
 				backgroundColor: '#36A2EB',
 			},
 		],
 	};
 
 	const lineData = {
-		labels: accountTransactionData.accTransactions.map((t) => t.transactionDate),
+		labels: accountTransactionData.map((t) => t.transactionDate),
 		datasets: [
 			{
 				label: 'Сумма транзакций по времени',
-				data: accountTransactionData.accTransactions.map((t) => t.balance),
+				data: accountTransactionData.map((t) => t.balance),
 				borderColor: '#36A2EB',
 				backgroundColor: 'rgba(54, 162, 235, 0.2)',
 				fill: true,
@@ -161,17 +134,20 @@ export const AnaliticsContainer = ({ className }) => {
 export const Analitics = styled(AnaliticsContainer)`
 	display: flex;
 	width: 100%;
+	height: 100vh;
 	flex-wrap: wrap;
 	gap: 10px;
 	justify-content: center;
-	margin: 10px 0;
+
 	& .chart {
 		border: 1px solid #e0e0e0;
 		border-radius: 10px;
 		overflow: hidden;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		width: 40%;
 		padding: 20px;
+		flex-grow: 1;
+		flex-basis: 40%;
+		height: 50vh;
 	}
 
 	& .header-card {

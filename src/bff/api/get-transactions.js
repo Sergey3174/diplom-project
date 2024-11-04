@@ -1,12 +1,12 @@
 import { transformTransactions } from '../transformers';
-export const getTransactions = (userId, page, limit, parametrs) => {
+export const getTransactions = (userId, page, limit, parametrs, sort = 'desc') => {
 	if (page) {
 		return fetch(
 			`http://localhost:3005/transactions?userId=${userId}${
 				parametrs.param1 ? `&type=${parametrs.param1}` : ''
 			}${
 				parametrs.param2 ? `&accountId=${parametrs.param2}` : ''
-			}&_page=${page}&_limit=${limit}&_sort=transaction_date&_order=desc`,
+			}&_page=${page}&_limit=${limit}&_sort=transaction_date&_order=${sort}`,
 		)
 			.then(async (data) => {
 				const totalCount = data.headers.get('X-Total-Count');

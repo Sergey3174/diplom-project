@@ -5,7 +5,6 @@ import { FormAccount, FormCategoty, FormTransaction } from './components';
 
 const FormPageContainer = ({ className }) => {
 	const requestServer = useServerRequest();
-
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const { id } = useParams();
