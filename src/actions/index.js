@@ -21,3 +21,7 @@ export * from './reset-filter';
 export * from './set-accounts-types';
 export * from './add-type-account-async';
 export * from './add-type-account';
+export * from './save-category-async';
+export * from './add-new-category';
+export * from './save-account-async';
+export * from './add-new-account';

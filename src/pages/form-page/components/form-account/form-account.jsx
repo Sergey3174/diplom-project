@@ -7,7 +7,7 @@ import { useMatch, useParams } from 'react-router-dom';
 import ADD_ICON from '../../../../assets/add-icon.svg';
 import V_ICON from '../../../../assets/V.png';
 import X_ICON from '../../../../assets/X.png';
-import { addTypeAccountAsync } from '../../../../actions';
+import { addTypeAccountAsync, saveAccountAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
 import TRASH from '../../../../assets/trash.png';
 
@@ -46,6 +46,20 @@ const FormAccountContainer = ({ className, onSave }) => {
 		dispatch(addTypeAccountAsync(requestServer, newTypeAccount)).then(() =>
 			setEditing(false),
 		);
+	};
+
+	const handleClick = (event) => {
+		const data = {
+			id: !isCreating ? idAccount : '',
+			userId,
+			name: nameAccount,
+			typeAccount: select,
+		};
+		if (isCreating) {
+			onSave(event, saveAccountAsync(requestServer, data));
+		} else {
+			onSave(event, 'saveAccounty', data);
+		}
 	};
 
 	return (
@@ -112,17 +126,7 @@ const FormAccountContainer = ({ className, onSave }) => {
 				value={nameAccount}
 			/>
 
-			<Button
-				width="50%"
-				onClick={(event) =>
-					onSave(event, 'saveAccount', {
-						id: !isCreating ? idAccount : '',
-						userId,
-						name: nameAccount,
-						typeAccount: select,
-					})
-				}
-			>
+			<Button width="50%" onClick={handleClick}>
 				Отправить
 			</Button>
 		</form>

@@ -22,6 +22,11 @@ export const accountsReducer = (state = initialAccountsState, action) => {
 				...state,
 				typeAccounts: [...state.typeAccounts, action.payload],
 			};
+		case ACTION_TYPE.ADD_NEW_ACCOUNT:
+			return {
+				...state,
+				accounts: [...state.accounts, action.payload],
+			};
 		default:
 			return state;
 	}

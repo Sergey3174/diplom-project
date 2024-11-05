@@ -10,4 +10,4 @@ export const addAccount = ({ userId, name, typeAccount }) =>
 			type_accounts: typeAccount,
 			created_at: new Date(),
 		}),
-	});
+	}).then((data) => data.json());

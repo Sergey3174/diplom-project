@@ -9,4 +9,4 @@ export const addCategory = ({ userId, name, type }) =>
 			name,
 			type,
 		}),
-	});
+	}).then((data) => data.json());

@@ -11,17 +11,17 @@ const FormPageContainer = ({ className }) => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const { id } = useParams();
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const onSave = (event, operation, data) => {
 		event.preventDefault();
 		requestServer(operation, data).then(() => navigate(-1));
 	};
 
-	// const onSaveStore = (event, action, data) => {
-	// 	event.preventDefault();
-	// 	dispatch(action)
-	// };
+	const onSaveStore = (event, action) => {
+		event.preventDefault();
+		dispatch(action).then(() => navigate(-1));
+	};
 
 	const Form = () => {
 		switch (pathname) {
@@ -29,11 +29,13 @@ const FormPageContainer = ({ className }) => {
 			case '/transaction':
 				return <FormTransaction onSave={onSave} />;
 			case `/category/${id}`:
-			case '/category':
 				return <FormCategoty onSave={onSave} />;
+			case '/category':
+				return <FormCategoty onSave={onSaveStore} />;
 			case `/account/${id}`:
-			case '/account':
 				return <FormAccount onSave={onSave} />;
+			case '/account':
+				return <FormAccount onSave={onSaveStore} />;
 			default:
 				return <div>Привет</div>;
 		}

@@ -15,170 +15,58 @@
       "email": "maria@example.com",
       "password": "qwe123",
       "created_at": "2024-04-26T11:15:00Z"
-    },
-    {
-      "id": "3",
-      "name": "Мария Петрова",
-      "login": "sergey",
-      "email": "maria@example.com",
-      "password": "qwe123",
-      "created_at": "2024-04-26T11:15:00Z"
-    },
-    {
-      "login": "ivan1",
-      "password": "qwe123",
-      "registered_at": "2051-06-03 17:10",
-      "role_id": 2,
-      "id": "p8p3JQ2"
-    },
-    {
-      "login": "ivan12",
-      "password": "qwe123",
-      "registered_at": "2059-10-26 21:21",
-      "role_id": 2,
-      "id": "bnwDbA1"
-    }
-  ],
-  "accounts": [
-    {
-      "id": "1",
-      "type_accounts": "1",
-      "userId": "1",
-      "name": "Банковский счет",
-      "created_at": "2024-04-25T10:05:00Z"
-    },
-    {
-      "id": "2",
-      "type_accounts": "1",
-      "userId": "1",
-      "name": "Наличные",
-      "created_at": "2024-04-25T10:10:00Z"
-    },
-    {
-      "id": "3",
-      "type_accounts": "1",
-      "userId": "2",
-      "name": "Электронный кошелек",
-      "created_at": "2024-04-26T11:20:00Z"
-    },
-    {
-      "userId": "1",
-      "name": "Сбербанк",
-      "type_accounts": "2",
-      "created_at": "2024-10-30T21:20:04.132Z",
-      "id": "nVetoxf"
-    },
-    {
-      "userId": "1",
-      "name": "ВТБ",
-      "type_accounts": "2",
-      "created_at": "2024-10-31T20:58:12.724Z",
-      "id": "hLcp96F"
-    },
-    {
-      "userId": "p8p3JQ2",
-      "name": "Сбербанк",
-      "type_accounts": "2",
-      "created_at": "2024-11-04T19:22:18.120Z",
-      "id": "7KiTkLH"
     }
   ],
   "categories": [
     {
-      "id": "1",
-      "userId": 1,
+      "userId": "1",
       "name": "Зарплата",
-      "type": "income"
-    },
-    {
-      "id": "2",
-      "userId": 1,
-      "name": "Продукты",
-      "type": "expense"
-    },
-    {
-      "id": "3",
-      "userId": 1,
-      "name": "Аренда",
-      "type": "expense"
-    },
-    {
-      "id": "4",
-      "userId": 1,
-      "name": "Инвестиции",
-      "type": "income"
-    },
-    {
-      "id": "555",
-      "userId": 2,
-      "name": "Инвестиции",
-      "type": "expense"
+      "type": "income",
+      "id": "1"
     },
     {
       "userId": "1",
-      "name": "Автомобиль",
+      "name": "Продукты",
       "type": "expense",
-      "id": "iL8YqYR"
+      "id": "jOTelhT"
     },
     {
       "userId": "2",
-      "name": "wedewdwedwed",
+      "name": "ervberberb",
       "type": "expense",
-      "id": "yujsfgk"
-    },
-    {
-      "userId": "p8p3JQ2",
-      "name": "Зарплата",
-      "type": "income",
-      "id": "72a_atX"
-    },
-    {
-      "userId": "p8p3JQ2",
-      "name": "Автомобиль",
-      "type": "expense",
-      "id": "BWpIXDi"
+      "id": "sWYUZIR"
     }
   ],
   "transactions": [
     {
-      "userId": "2",
-      "accountId": "3",
-      "categoryId": "4",
-      "amount": 15000,
+      "userId": "1",
+      "accountId": "1",
+      "categoryId": "1",
+      "amount": 12221,
       "type": "income",
-      "description": "hamster combat",
-      "transaction_date": "2024-10-29T19:05:20.640Z",
-      "id": "yjyzMZ9"
+      "description": "цуацуа",
+      "transaction_date": "2024-11-05T09:30:20.263Z",
+      "id": "1"
     },
     {
-      "userId": "2",
-      "accountId": "3",
-      "categoryId": "yujsfgk",
-      "amount": 12121212,
+      "userId": "1",
+      "accountId": "1",
+      "categoryId": "jOTelhT",
+      "amount": 1000,
       "type": "expense",
-      "description": "weewfewfwef",
-      "transaction_date": "2024-10-30T21:51:26.878Z",
-      "id": "NvGuSRe"
+      "description": "аввава",
+      "transaction_date": "2024-11-05T09:31:11.693Z",
+      "id": "ybeDb4l"
     },
     {
-      "userId": "p8p3JQ2",
-      "accountId": "7KiTkLH",
-      "categoryId": "72a_atX",
-      "amount": 15000,
+      "userId": "1",
+      "accountId": "1",
+      "categoryId": "1",
+      "amount": 2133,
       "type": "income",
-      "description": "укукмукакуакуа",
-      "transaction_date": "2024-11-04T19:22:31.730Z",
-      "id": "WqY2jUp"
-    },
-    {
-      "userId": "p8p3JQ2",
-      "accountId": "7KiTkLH",
-      "categoryId": "BWpIXDi",
-      "amount": 5000,
-      "type": "expense",
-      "description": "бенз",
-      "transaction_date": "2024-11-04T19:23:32.216Z",
-      "id": "S-__KxJ"
+      "description": "уыауапу",
+      "transaction_date": "2024-11-05T09:38:56.946Z",
+      "id": "KV5Mb8w"
     }
   ],
   "type_accounts": [
@@ -195,105 +83,31 @@
       "id": "mKt6_-i"
     }
   ],
+  "accounts": [
+    {
+      "userId": "1",
+      "name": "Сбербанк",
+      "type_accounts": "2",
+      "created_at": "2024-11-05T09:28:57.138Z",
+      "id": "1"
+    },
+    {
+      "userId": "2",
+      "name": "cecwve",
+      "type_accounts": "1",
+      "created_at": "2024-11-05T10:17:51.351Z",
+      "id": "tVHU6Vd"
+    }
+  ],
   "sessions": [
     {
-      "hash": "0.26174729006418462340377573127625510096549987792969",
+      "hash": "0.14411656711276710218783136951969936490058898925781",
       "user": {
-        "id": "1",
-        "login": "ivan",
+        "id": "2",
+        "login": "maria",
         "password": "qwe123"
       },
       "id": 1
-    },
-    {
-      "hash": "0.04900300021984538290098498691804707050323486328125",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 2
-    },
-    {
-      "hash": "0.23213417158897331482592107931850478053092956542969",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 3
-    },
-    {
-      "hash": "0.14289392543468548701923737098695710301399230957031",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 4
-    },
-    {
-      "hash": "0.86693675818059046100927389488788321614265441894531",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 5
-    },
-    {
-      "hash": "0.19057535570913519684665970999049022793769836425781",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 6
-    },
-    {
-      "hash": "0.69975302993042243215882081130985170602798461914063",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 7
-    },
-    {
-      "hash": "0.45753923495455084413663371378788724541664123535156",
-      "user": {
-        "id": "3",
-        "login": "sergey",
-        "password": "qwe123"
-      },
-      "id": 8
-    },
-    {
-      "hash": "0.06880939324824675296099485422018915414810180664063",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 9
-    },
-    {
-      "hash": "0.18804734178512183540021851513301953673362731933594",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 10
-    },
-    {
-      "hash": "0.82871572498719259236565903847804293036460876464844",
-      "user": {
-        "id": "1",
-        "login": "ivan",
-        "password": "qwe123"
-      },
-      "id": 11
     }
   ]
 }

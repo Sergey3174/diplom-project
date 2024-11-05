@@ -2,7 +2,8 @@ import { addCategory, getTransactions, updateCategory, updateTransaction } from 
 
 export const saveCategory = async (newCategoryData) => {
 	if (newCategoryData.id === '') {
-		await addCategory(newCategoryData);
+		const newCategory = await addCategory(newCategoryData);
+		return { res: newCategory };
 	} else {
 		const { transactions } = await getTransactions(newCategoryData.userId, 1, '', {
 			category: newCategoryData.id,
