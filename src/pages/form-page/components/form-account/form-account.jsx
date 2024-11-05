@@ -9,6 +9,7 @@ import V_ICON from '../../../../assets/V.png';
 import X_ICON from '../../../../assets/X.png';
 import { addTypeAccountAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
+import TRASH from '../../../../assets/trash.png';
 
 const FormAccountContainer = ({ className, onSave }) => {
 	const [select, setSelect] = useState('');
@@ -50,7 +51,16 @@ const FormAccountContainer = ({ className, onSave }) => {
 	return (
 		<form className={className}>
 			<h3>Добавить счет</h3>
-
+			{!isCreating && (
+				<IconButton
+					icon={TRASH}
+					width="30px"
+					position="absolute"
+					right="0"
+					top="-5px"
+					onClick={(event) => onSave(event, 'removeAccount', idAccount)}
+				/>
+			)}
 			<div className="category-input">
 				{!editing ? (
 					<>
@@ -122,6 +132,7 @@ const FormAccountContainer = ({ className, onSave }) => {
 export const FormAccount = styled(FormAccountContainer)`
 	width: 80%;
 	margin: 0 auto;
+	position: relative;
 
 	& .category-input {
 		display: flex;

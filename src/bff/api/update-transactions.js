@@ -5,8 +5,9 @@ export const updateTransaction = ({
 	amount,
 	type,
 	description,
-}) =>
-	fetch(`http://localhost:3005/transactions/${id}`, {
+}) => {
+	console.log('api', id);
+	return fetch(`http://localhost:3005/transactions/${id}`, {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
@@ -19,3 +20,4 @@ export const updateTransaction = ({
 			description,
 		}),
 	});
+};

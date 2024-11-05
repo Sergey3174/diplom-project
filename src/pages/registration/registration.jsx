@@ -4,13 +4,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../bff';
 import { useState } from 'react';
-import { Input, Button, H2, AuthFormError } from '../../components';
+import { Input, Button, AuthFormError } from '../../components';
 import { useResetForm } from '../../hooks';
 import styled from 'styled-components';
 import { setUser } from '../../actions';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUserRole } from '../../selectors';
-import { ROLE } from '../../constans';
+import { selectUserLogin, selectUserRole } from '../../selectors';
 
 const regFormSchema = yup.object().shape({
 	login: yup
@@ -50,7 +49,8 @@ const RegistrationContainer = ({ className }) => {
 	});
 
 	const [serverError, setServerError] = useState(null);
-	const roleId = useSelector(selectUserRole);
+	// const roleId = useSelector(selectUserRole);
+	const user = useSelector(selectUserLogin);
 
 	const dispatch = useDispatch();
 
@@ -73,13 +73,13 @@ const RegistrationContainer = ({ className }) => {
 
 	const errorMessage = formError || serverError;
 
-	if (roleId !== ROLE.GUEST) {
+	if (user) {
 		return <Navigate to="/" />;
 	}
 
 	return (
 		<div className={className}>
-			<H2>Регистрация</H2>
+			<h2>Регистрация</h2>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Input
 					type="text"

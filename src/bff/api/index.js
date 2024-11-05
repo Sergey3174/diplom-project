@@ -27,3 +27,5 @@ export * from './update-transactions';
 export * from './update-account';
 export * from './update-category';
 export * from './add-account-type';
+export * from './delete-account';
+export * from './delete-category';

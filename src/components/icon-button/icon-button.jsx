@@ -9,5 +9,6 @@ export const IconButton = styled(IconButtonContainer)`
 	cursor: pointer;
 	margin: ${({ margin = '0 0' }) => margin};
 	position: ${({ position = 'static' }) => position};
-	right: ${({ right = '0' }) => right};
+	right: ${({ right = '100' }) => right};
+	top: ${({ top = '' }) => top};
 `;

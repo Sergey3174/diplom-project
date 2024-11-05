@@ -5,7 +5,7 @@ export const fecthAccountBalance = async (userId, accountId) => {
 		userId,
 		1,
 		'',
-		{ param2: accountId },
+		{ account: accountId },
 		'asc',
 	);
 	const balanceDateTransactions = transactions.reduce(

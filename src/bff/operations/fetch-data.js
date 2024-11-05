@@ -6,7 +6,7 @@ export const fetchData = async (userId) => {
 		getCategories(userId),
 		getAccounts(userId),
 		getAccountsTypes(),
-		getTransactions(userId),
+		getTransactions(userId, 1, '', {}),
 	]);
 
 	const newCategories = categories.categories.map((cat) => ({
@@ -19,12 +19,22 @@ export const fetchData = async (userId) => {
 		amount: calculateAmount(transactionsAmount.transactions, acc.id, 'account'),
 	}));
 
+	const lastIncomeTransactions = transactionsAmount.transactions
+		.filter(({ type }) => type === 'income')
+		.slice(0, 3);
+
+	const lastExpenseTransactions = transactionsAmount.transactions
+		.filter(({ type }) => type === 'expense')
+		.slice(0, 3);
+
 	return {
 		error: null,
 		res: {
 			categories: newCategories,
 			accounts: newAccounts,
 			typeAccounts,
+			lastIncomeTransactions,
+			lastExpenseTransactions,
 		},
 	};
 };

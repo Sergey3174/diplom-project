@@ -89,11 +89,22 @@ export const AnaliticsContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-			<div className="chart">
+			<div className="chart pie">
 				<div className="header-card">
-					<h4>Счета</h4>
+					<h4>Категории</h4>
+					<Select
+						name="select1"
+						data={[
+							{ id: 'income', name: 'Доход' },
+							{ id: 'expense', name: 'Расход' },
+						]}
+						value={selectValues.select1}
+						onSelectChange={handleSelectChange}
+						width="50%"
+					/>
 				</div>
-				<Bar data={barData} />
+
+				<Pie data={pieData} />
 			</div>
 
 			<div className="chart">
@@ -112,26 +123,17 @@ export const AnaliticsContainer = ({ className }) => {
 
 			<div className="chart">
 				<div className="header-card">
-					<h4>Категории</h4>
-					<Select
-						name="select1"
-						data={[
-							{ id: 'income', name: 'Доход' },
-							{ id: 'expense', name: 'Расход' },
-						]}
-						value={selectValues.select1}
-						onSelectChange={handleSelectChange}
-						width="50%"
-					/>
+					<h4>Счета</h4>
 				</div>
-
-				<Pie data={pieData} />
+				<Bar data={barData} />
 			</div>
 		</div>
 	);
 };
 
 export const Analitics = styled(AnaliticsContainer)`
+	box-sizing: border-box;
+	margin: 5px 0;
 	display: flex;
 	width: 100%;
 	height: 100vh;
@@ -142,16 +144,25 @@ export const Analitics = styled(AnaliticsContainer)`
 	& .chart {
 		border: 1px solid #e0e0e0;
 		border-radius: 10px;
-		overflow: hidden;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		padding: 20px;
-		flex-grow: 1;
-		flex-basis: 40%;
-		height: 50vh;
+		padding: 10px;
+		flex: 1;
+		flex-basis: 600px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: calc(50vh-60px);
 	}
 
 	& .header-card {
 		display: flex;
 		justify-content: space-between;
+		width: 100%;
+	}
+
+	& .chart canvas {
+		max-width: 580px;
+		max-height: 300px;
+		object-fit: contain;
 	}
 `;

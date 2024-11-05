@@ -11,8 +11,9 @@ const initialAppState = {
 	filter: {
 		isFilter: false,
 		parametrs: {
-			param1: '',
-			param2: '',
+			type: '',
+			account: '',
+			category: '',
 		},
 	},
 };

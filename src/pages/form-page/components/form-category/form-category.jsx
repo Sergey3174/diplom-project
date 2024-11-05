@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { Button, Input, Select } from '../../../../components';
+import { Button, IconButton, Input, Select } from '../../../../components';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCategories, selectUserId } from '../../../../selectors';
 import { useMatch, useParams } from 'react-router-dom';
+import TRASH from '../../../../assets/trash.png';
 
 const FormCategory = ({ className, onSave }) => {
 	const [select, setSelect] = useState('');
@@ -34,6 +35,17 @@ const FormCategory = ({ className, onSave }) => {
 	return (
 		<form className={className}>
 			<h3>Добавить категорию</h3>
+			{!isCreating && (
+				<IconButton
+					icon={TRASH}
+					width="30px"
+					position="absolute"
+					right="0"
+					top="-5px"
+					onClick={(event) => onSave(event, 'removeCategory', idCategory)}
+				/>
+			)}
+
 			<Select
 				label="Тип категории"
 				name="select1"
@@ -67,4 +79,5 @@ const FormCategory = ({ className, onSave }) => {
 export const FormCategoty = styled(FormCategory)`
 	width: 80%;
 	margin: 0 auto;
+	position: relative;
 `;

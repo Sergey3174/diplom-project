@@ -1,17 +1,19 @@
 import styled from 'styled-components';
-import { Button, Input, Select } from '../../../../components';
+import { Button, IconButton, Input, Select } from '../../../../components';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAccounts, selectCategories, selectUserId } from '../../../../selectors';
-import { useMatch, useParams } from 'react-router-dom';
+import { useMatch, useNavigate, useParams } from 'react-router-dom';
 import { useSelectValues } from '../../../../hooks';
+import TRASH from '../../../../assets/trash.png';
+import ADD_ICON from '../../../../assets/add-icon.svg';
 
 const FormTransactionContainer = ({ className, onSave }) => {
 	const [selectValues, handleSelectChange] = useSelectValues(3);
 	const [amount, setAmount] = useState('');
 	const [description, setDescription] = useState('');
 	const isCreating = !!useMatch('/transaction');
-
+	const navigate = useNavigate();
 	const userId = useSelector(selectUserId);
 	const { categories } = useSelector(selectCategories);
 	const { accounts } = useSelector(selectAccounts);
@@ -45,6 +47,18 @@ const FormTransactionContainer = ({ className, onSave }) => {
 	return (
 		<form className={className}>
 			<h3>Добавить операцию</h3>
+			{!isCreating && (
+				<IconButton
+					icon={TRASH}
+					width="30px"
+					position="absolute"
+					right="0px"
+					top="-5px"
+					onClick={(event) =>
+						onSave(event, 'removeTransactionServer', idTransaction)
+					}
+				/>
+			)}
 			<Select
 				label="Тип транзакции"
 				name="select1"
@@ -63,12 +77,28 @@ const FormTransactionContainer = ({ className, onSave }) => {
 				value={selectValues.select2}
 				onSelectChange={handleSelectChange}
 			/>
+			<IconButton
+				onClick={() => navigate('/category')}
+				icon={ADD_ICON}
+				width="30px"
+				position="absolute"
+				right="-35px"
+				top="102px"
+			/>
 			<Select
 				label="Счет"
 				name="select3"
 				data={accounts}
 				value={selectValues.select3}
 				onSelectChange={handleSelectChange}
+			/>
+			<IconButton
+				onClick={() => navigate('/account')}
+				icon={ADD_ICON}
+				width="30px"
+				position="absolute"
+				right="-35px"
+				top="152px"
 			/>
 			<div>Сумма</div>
 			<Input width="100%" type="number" onChange={onAmountChange} value={amount} />
@@ -99,4 +129,5 @@ const FormTransactionContainer = ({ className, onSave }) => {
 export const FormTransaction = styled(FormTransactionContainer)`
 	width: 80%;
 	margin: 0 auto;
+	position: relative;
 `;

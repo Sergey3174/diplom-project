@@ -19,3 +19,5 @@ export * from './save-category';
 export * from './save-account';
 export * from './add-type-account';
 export * from './fetch-account-balance';
+export * from './remove-account';
+export * from './remove-category';

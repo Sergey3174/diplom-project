@@ -23,6 +23,20 @@
       "email": "maria@example.com",
       "password": "qwe123",
       "created_at": "2024-04-26T11:15:00Z"
+    },
+    {
+      "login": "ivan1",
+      "password": "qwe123",
+      "registered_at": "2051-06-03 17:10",
+      "role_id": 2,
+      "id": "p8p3JQ2"
+    },
+    {
+      "login": "ivan12",
+      "password": "qwe123",
+      "registered_at": "2059-10-26 21:21",
+      "role_id": 2,
+      "id": "bnwDbA1"
     }
   ],
   "accounts": [
@@ -62,18 +76,11 @@
       "id": "hLcp96F"
     },
     {
-      "userId": "1",
-      "name": "Тиньков",
-      "type_accounts": "2",
-      "created_at": "2024-10-31T21:11:15.196Z",
-      "id": "R4gzoUh"
-    },
-    {
-      "userId": "3",
+      "userId": "p8p3JQ2",
       "name": "Сбербанк",
       "type_accounts": "2",
-      "created_at": "2024-11-03T00:26:30.609Z",
-      "id": "7RP8QeL"
+      "created_at": "2024-11-04T19:22:18.120Z",
+      "id": "7KiTkLH"
     }
   ],
   "categories": [
@@ -120,22 +127,16 @@
       "id": "yujsfgk"
     },
     {
-      "userId": "1",
-      "name": "хуй",
-      "type": "income",
-      "id": "RjMjfdD"
-    },
-    {
-      "userId": "3",
+      "userId": "p8p3JQ2",
       "name": "Зарплата",
       "type": "income",
-      "id": "B0LJRqr"
+      "id": "72a_atX"
     },
     {
-      "userId": "3",
-      "name": "Еда",
+      "userId": "p8p3JQ2",
+      "name": "Автомобиль",
       "type": "expense",
-      "id": "BBEdxUm"
+      "id": "BWpIXDi"
     }
   ],
   "transactions": [
@@ -160,64 +161,24 @@
       "id": "NvGuSRe"
     },
     {
-      "userId": "1",
-      "accountId": "nVetoxf",
-      "categoryId": "1",
+      "userId": "p8p3JQ2",
+      "accountId": "7KiTkLH",
+      "categoryId": "72a_atX",
       "amount": 15000,
       "type": "income",
-      "description": "зарплата за ноябрь",
-      "transaction_date": "2024-11-02T23:14:12.155Z",
-      "id": "djZ7ZTf"
+      "description": "укукмукакуакуа",
+      "transaction_date": "2024-11-04T19:22:31.730Z",
+      "id": "WqY2jUp"
     },
     {
-      "userId": "1",
-      "accountId": "nVetoxf",
-      "categoryId": "1",
-      "amount": 23333,
-      "type": "income",
-      "description": "wefwefwef",
-      "transaction_date": "2024-11-02T23:18:18.082Z",
-      "id": "WW0fX9B"
-    },
-    {
-      "userId": "1",
-      "accountId": "nVetoxf",
-      "categoryId": "iL8YqYR",
-      "amount": 2000,
+      "userId": "p8p3JQ2",
+      "accountId": "7KiTkLH",
+      "categoryId": "BWpIXDi",
+      "amount": 5000,
       "type": "expense",
       "description": "бенз",
-      "transaction_date": "2024-11-03T00:06:12.488Z",
-      "id": "tK3jF_v"
-    },
-    {
-      "userId": "3",
-      "accountId": "7RP8QeL",
-      "categoryId": "B0LJRqr",
-      "amount": 10000,
-      "type": "income",
-      "description": "Зп за проект",
-      "transaction_date": "2024-11-03T00:27:06.803Z",
-      "id": "NBcJRK2"
-    },
-    {
-      "userId": "3",
-      "accountId": "7RP8QeL",
-      "categoryId": "B0LJRqr",
-      "amount": 7200,
-      "type": "income",
-      "description": "Зп за сайт",
-      "transaction_date": "2024-11-03T00:27:40.035Z",
-      "id": "GoeGFeE"
-    },
-    {
-      "userId": "3",
-      "accountId": "7RP8QeL",
-      "categoryId": "BBEdxUm",
-      "amount": 650,
-      "type": "expense",
-      "description": "Поел в маке",
-      "transaction_date": "2024-11-03T00:28:13.899Z",
-      "id": "-EzFDif"
+      "transaction_date": "2024-11-04T19:23:32.216Z",
+      "id": "S-__KxJ"
     }
   ],
   "type_accounts": [
@@ -317,13 +278,22 @@
       "id": 9
     },
     {
-      "hash": "0.37056135789149213799476001440780237317085266113281",
+      "hash": "0.18804734178512183540021851513301953673362731933594",
       "user": {
         "id": "1",
         "login": "ivan",
         "password": "qwe123"
       },
       "id": 10
+    },
+    {
+      "hash": "0.82871572498719259236565903847804293036460876464844",
+      "user": {
+        "id": "1",
+        "login": "ivan",
+        "password": "qwe123"
+      },
+      "id": 11
     }
   ]
 }

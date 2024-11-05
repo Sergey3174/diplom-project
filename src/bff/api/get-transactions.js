@@ -1,11 +1,12 @@
 import { transformTransactions } from '../transformers';
 export const getTransactions = (userId, page, limit, parametrs, sort = 'desc') => {
 	if (page) {
+		console.log(parametrs);
 		return fetch(
 			`http://localhost:3005/transactions?userId=${userId}${
-				parametrs.param1 ? `&type=${parametrs.param1}` : ''
-			}${
-				parametrs.param2 ? `&accountId=${parametrs.param2}` : ''
+				parametrs.type ? `&type=${parametrs.type}` : ''
+			}${parametrs.account ? `&accountId=${parametrs.account}` : ''}${
+				parametrs.category ? `&categoryId=${parametrs.category}` : ''
 			}&_page=${page}&_limit=${limit}&_sort=transaction_date&_order=${sort}`,
 		)
 			.then(async (data) => {

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { IconButton, Select } from '../../../../components';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAccounts, selectFilter } from '../../../../selectors';
+import { selectAccounts, selectCategories, selectFilter } from '../../../../selectors';
 import { RESET_FILTER, setFilter } from '../../../../actions';
 import UPDATE from '../../../../assets/update.png';
 import ADD_ICON from '../../../../assets/add-icon.svg';
 import { Link } from 'react-router-dom';
 const ControlPanelContainer = ({ className }) => {
 	const { accounts } = useSelector(selectAccounts);
-
+	const { categories } = useSelector(selectCategories);
 	const dispatch = useDispatch();
 
 	const { isFilter, parametrs } = useSelector(selectFilter);
@@ -25,18 +25,25 @@ const ControlPanelContainer = ({ className }) => {
 		<div className={className}>
 			<span>Фильтры</span>
 			<Select
-				name="param1"
+				name="type"
 				data={[
 					{ id: 'income', name: 'Доход' },
 					{ id: 'expense', name: 'Расход' },
 				]}
-				value={parametrs.param1}
+				value={parametrs.type}
 				onSelectChange={handleSelectChange}
 			/>
 			<Select
-				name="param2"
+				name="account"
 				data={accounts}
-				value={parametrs.param2}
+				value={parametrs.account}
+				onSelectChange={handleSelectChange}
+			/>
+
+			<Select
+				name="category"
+				data={categories}
+				value={parametrs.category}
 				onSelectChange={handleSelectChange}
 			/>
 

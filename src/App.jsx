@@ -1,6 +1,13 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { PrivateRoute, SideBar } from './components';
-import { Authorization, MainPage, HistoryPage, FormPage, Analitics } from './pages';
+import {
+	Authorization,
+	MainPage,
+	HistoryPage,
+	FormPage,
+	Analitics,
+	Registration,
+} from './pages';
 
 import styled from 'styled-components';
 import { useLayoutEffect } from 'react';
@@ -61,7 +68,7 @@ function App() {
 					<Route path="/account/:id" element={<FormPage />} />
 					<Route path="/analitics" element={<Analitics />} />
 				</Route>
-				<Route path="/register" element={<div>Заглушка</div>} />
+				<Route path="/register" element={<Registration />} />
 				<Route path="/login" element={<Authorization />} />
 			</Routes>
 		</>

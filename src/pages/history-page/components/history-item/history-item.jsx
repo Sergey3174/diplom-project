@@ -3,7 +3,7 @@ import TRASH from '../../../../assets/trash.png';
 import PENCIL from '../../../../assets/pencil.png';
 import { useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../../../hooks';
-import { IconButton } from '../../../../components';
+import { IconButton, StyleSpan } from '../../../../components';
 
 const HistoryItemContainer = ({
 	className,
@@ -24,10 +24,14 @@ const HistoryItemContainer = ({
 	return (
 		<div className={className}>
 			<div className="container">
-				<div className="date">{transactionDate}</div>
-				<div className="amount">{type === 'income' ? amount : -amount}</div>
-				<div className="description">{description}</div>
-				<div className="account">{name}</div>
+				<div>{transactionDate}</div>
+				<div>
+					<StyleSpan type={type}>
+						{type === 'income' ? amount : -amount}
+					</StyleSpan>
+				</div>
+				<div>{description}</div>
+				<div>{name}</div>
 			</div>
 			<IconButton
 				icon={PENCIL}
@@ -59,18 +63,10 @@ export const HistoryItem = styled(HistoryItemContainer)`
 		padding: 10px;
 		overflow: hidden;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	}
+		flex-wrap: wrap;
 
-	& .date {
-		width: 25%;
-	}
-	& .amount {
-		width: 25%;
-	}
-	& .description {
-		width: 25%;
-	}
-	& .account {
-		width: 25%;
+		& > div {
+			flex: 1;
+		}
 	}
 `;

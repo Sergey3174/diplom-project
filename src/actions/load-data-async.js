@@ -8,6 +8,10 @@ export const loadDataAsync = (requestServer, userId) => (dispatch) =>
 			dispatch(setCategoriesData(data.res.categories));
 			dispatch(setAccountsData(data.res.accounts));
 			dispatch(setTypeAccounts(data.res.typeAccounts.typeAccounts));
+			return {
+				lastIncomeTransactions: data.res.lastIncomeTransactions,
+				lastExpenseTransactions: data.res.lastExpenseTransactions,
+			};
 		}
 		return data;
 	});
