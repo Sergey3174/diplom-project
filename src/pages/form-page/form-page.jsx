@@ -27,7 +27,7 @@ const FormPageContainer = ({ className }) => {
 		switch (pathname) {
 			case `/transaction/${id}`:
 			case '/transaction':
-				return <FormTransaction onSave={onSave} />;
+				return <FormTransaction onSave={onSaveStore} />;
 			case `/category/${id}`:
 				return <FormCategoty onSave={onSave} />;
 			case '/category':

@@ -21,4 +21,4 @@ export const addTransaction = ({
 			description,
 			transaction_date,
 		}),
-	});
+	}).then((data) => data.json());

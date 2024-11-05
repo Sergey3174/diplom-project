@@ -1,7 +1,6 @@
 import { transformTransactions } from '../transformers';
 export const getTransactions = (userId, page, limit, parametrs, sort = 'desc') => {
 	if (page) {
-		console.log(parametrs);
 		return fetch(
 			`http://localhost:3005/transactions?userId=${userId}${
 				parametrs.type ? `&type=${parametrs.type}` : ''

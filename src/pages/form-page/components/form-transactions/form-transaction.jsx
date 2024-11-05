@@ -4,9 +4,14 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAccounts, selectCategories, selectUserId } from '../../../../selectors';
 import { useMatch, useNavigate, useParams } from 'react-router-dom';
-import { useSelectValues } from '../../../../hooks';
+import { useSelectValues, useServerRequest } from '../../../../hooks';
 import TRASH from '../../../../assets/trash.png';
 import ADD_ICON from '../../../../assets/add-icon.svg';
+import {
+	removeTransactionAsync,
+	saveTransactionAsync,
+	updateTransactionAsync,
+} from '../../../../actions';
 
 const FormTransactionContainer = ({ className, onSave }) => {
 	const [selectValues, handleSelectChange] = useSelectValues(3);
@@ -17,6 +22,8 @@ const FormTransactionContainer = ({ className, onSave }) => {
 	const userId = useSelector(selectUserId);
 	const { categories } = useSelector(selectCategories);
 	const { accounts } = useSelector(selectAccounts);
+
+	const requestServer = useServerRequest();
 
 	const { id: idTransaction } = useParams();
 
@@ -43,6 +50,26 @@ const FormTransactionContainer = ({ className, onSave }) => {
 	const filterCategories = categories.filter(
 		({ type }) => type === selectValues.select1,
 	);
+	const handleClick = (event) => {
+		const data = {
+			id: !isCreating ? idTransaction : '',
+			userId,
+			accountId: selectValues.select3,
+			categoryId: selectValues.select2,
+			amount: Number(amount),
+			type: selectValues.select1,
+			description,
+			transaction_date: new Date(),
+		};
+
+		if (isCreating) {
+			onSave(event, saveTransactionAsync(requestServer, data));
+		} else {
+			onSave(event, updateTransactionAsync(requestServer, data));
+		}
+	};
+
+	console.log(selectValues);
 
 	return (
 		<form className={className}>
@@ -55,7 +82,15 @@ const FormTransactionContainer = ({ className, onSave }) => {
 					right="0px"
 					top="-5px"
 					onClick={(event) =>
-						onSave(event, 'removeTransactionServer', idTransaction)
+						onSave(
+							event,
+							removeTransactionAsync(requestServer, {
+								id: idTransaction,
+								userId,
+								accountId: selectValues.select3,
+								categoryId: selectValues.select2,
+							}),
+						)
 					}
 				/>
 			)}
@@ -105,21 +140,7 @@ const FormTransactionContainer = ({ className, onSave }) => {
 			<div>Описание</div>
 			<Input width="100%" onChange={onDescriptionChange} value={description} />
 
-			<Button
-				width="50%"
-				onClick={(event) =>
-					onSave(event, 'saveTransaction', {
-						id: !isCreating ? idTransaction : '',
-						userId,
-						accountId: selectValues.select3,
-						categoryId: selectValues.select2,
-						amount: Number(amount),
-						type: selectValues.select1,
-						description,
-						transaction_date: new Date(),
-					})
-				}
-			>
+			<Button width="50%" onClick={handleClick}>
 				Отправить
 			</Button>
 		</form>

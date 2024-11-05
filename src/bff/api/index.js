@@ -29,3 +29,4 @@ export * from './update-category';
 export * from './add-account-type';
 export * from './delete-account';
 export * from './delete-category';
+export * from './get-transaction';

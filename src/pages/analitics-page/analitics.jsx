@@ -32,7 +32,7 @@ export const AnaliticsContainer = ({ className }) => {
 	const userId = useSelector(selectUserId);
 	const serverRequest = useServerRequest();
 
-	useRequestData(userId);
+	// useRequestData(userId);
 
 	const { categories } = useSelector(selectCategories);
 	const { accounts } = useSelector(selectAccounts);
