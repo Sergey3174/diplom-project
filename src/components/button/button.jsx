@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonContainer = ({ className, width, children, ...props }) => {
+const ButtonContainer = ({ className, children, ...props }) => {
 	return (
 		<button className={className} {...props}>
 			{children}
@@ -12,7 +12,7 @@ export const Button = styled(ButtonContainer)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 0 auto;
+	margin: ${({ margin = '0 auto' }) => margin};
 	width: ${({ width = '100%' }) => width};
 	border-radius: 8px;
 	border: 1px solid transparent;

@@ -3,6 +3,8 @@ import { ACTION_TYPE } from '../actions';
 const initialUserState = {
 	id: null,
 	login: null,
+	name: null,
+	email: null,
 	session: null,
 };
 

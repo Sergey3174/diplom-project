@@ -4,3 +4,4 @@ export * from './main-page/main-page';
 export * from './history-page/history-page';
 export * from './analitics-page/analitics';
 export * from './registration/registration';
+export * from './user-page/user-page';

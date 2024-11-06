@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserLogin, selectUserSession } from '../../../../selectors';
 import { logout } from '../../../../actions';
 import { Button } from '../../../button/button';
+import { useNavigate } from 'react-router-dom';
 
 const UserBlockContainer = ({ className }) => {
 	const dispatch = useDispatch();
-
+	const navigate = useNavigate();
 	const session = useSelector(selectUserSession);
 	const login = useSelector(selectUserLogin);
 
@@ -16,11 +17,17 @@ const UserBlockContainer = ({ className }) => {
 		dispatch(logout(session));
 		sessionStorage.removeItem('userData');
 	};
+	const onUserPage = () => {
+		navigate('user-page');
+	};
 
 	return (
 		<div className={className}>
 			<img src={UserAvatar} />
 			<span>{login}</span>
+			<Button onClick={onUserPage} margin="0 0 5px 0">
+				Редактировать
+			</Button>
 			<Button onClick={onLogout}>Выход</Button>
 		</div>
 	);

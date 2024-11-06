@@ -42,6 +42,12 @@
       "name": "233232",
       "type": "income",
       "id": "ZWmq7Ul"
+    },
+    {
+      "userId": "1",
+      "name": "egewggw",
+      "type": "income",
+      "id": "9lrTiPo"
     }
   ],
   "transactions": [
@@ -77,13 +83,6 @@
       "type_accounts": "1",
       "created_at": "2024-11-05T15:54:42.525Z",
       "id": "vH6JPBN"
-    },
-    {
-      "userId": "1",
-      "name": "32у23",
-      "type_accounts": "1",
-      "created_at": "2024-11-06T11:28:45.390Z",
-      "id": "4ivXjeR"
     }
   ],
   "sessions": [
@@ -153,6 +152,17 @@
         "password": "qwe123"
       },
       "id": 8
+    },
+    {
+      "hash": "0.76689340898297775339642612379975616931915283203125",
+      "user": {
+        "id": "1",
+        "login": "ivan",
+        "password": "qwe123",
+        "name": "Иван Иванов",
+        "email": "ivan@example.com"
+      },
+      "id": 9
     }
   ]
 }

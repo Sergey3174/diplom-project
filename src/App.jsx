@@ -7,6 +7,7 @@ import {
 	FormPage,
 	Analitics,
 	Registration,
+	UserPage,
 } from './pages';
 
 import styled from 'styled-components';
@@ -68,6 +69,7 @@ function App() {
 					<Route path="/account" element={<FormPage />} />
 					<Route path="/account/:id" element={<FormPage />} />
 					<Route path="/analitics" element={<Analitics />} />
+					<Route path="/user-page" element={<UserPage />} />
 				</Route>
 				<Route path="/register" element={<Registration />} />
 				<Route path="/login" element={<Authorization />} />
