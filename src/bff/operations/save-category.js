@@ -5,12 +5,11 @@ export const saveCategory = async (newCategoryData) => {
 		const newCategory = await addCategory(newCategoryData);
 		return { res: { ...newCategory, amount: 0 } };
 	} else {
-		const { transactions } = await getTransactions(newCategoryData.userId, 1, '', {
+		const { transactions } = await getTransactions(newCategoryData.userId, '', '', {
 			category: newCategoryData.id,
 		});
 
 		for (const t of transactions) {
-			console.log(t.id, { type: newCategoryData.type });
 			await updateTransaction({ id: t.id, type: newCategoryData.type });
 		}
 

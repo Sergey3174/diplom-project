@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 import ADD_ICON from '../../../../assets/add-icon.svg';
 import { Link } from 'react-router-dom';
-import { IconButton } from '../../../../components';
+import { IconButton, Loader } from '../../../../components';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from '../../../../selectors';
 
 const CardContainer = ({ className, children, to, name }) => {
+	const isLoading = useSelector(selectIsLoading);
 	return (
 		<div className={className}>
 			<div className="header_widget">
 				<h3>{name}</h3>
-				<Link to={to}>
-					<IconButton icon={ADD_ICON} width="30px" />
-				</Link>
+				{to && (
+					<Link to={to}>
+						<IconButton icon={ADD_ICON} width="30px" />
+					</Link>
+				)}
 			</div>
-			{children}
+			{isLoading ? <Loader /> : children}
 		</div>
 	);
 };
@@ -28,8 +33,7 @@ export const Card = styled(CardContainer)`
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	transition: transform 0.2s;
 	background-color: #e9e9e9;
-	flex: 2 1 600px;
-
+	flex: ${({ flex = '2 1 600px;' }) => flex};
 	&:hover {
 		transform: translateY(-5px);
 	}

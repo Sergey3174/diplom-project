@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
-import { FormAccount, FormCategoty, FormTransaction } from './components';
+import { FormAccount, FormCategory, FormTransaction } from './components';
 import { IconButton } from '../../components';
 import BACK_ICON from '../../assets/back.png';
 import { useDispatch } from 'react-redux';
@@ -29,9 +29,9 @@ const FormPageContainer = ({ className }) => {
 			case '/transaction':
 				return <FormTransaction onSave={onSaveStore} />;
 			case `/category/${id}`:
-				return <FormCategoty onSave={onSave} />;
+				return <FormCategory onSave={onSave} />;
 			case '/category':
-				return <FormCategoty onSave={onSaveStore} />;
+				return <FormCategory onSave={onSaveStore} />;
 			case `/account/${id}`:
 				return <FormAccount onSave={onSave} />;
 			case '/account':

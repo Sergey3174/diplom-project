@@ -1,5 +1,5 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import { PrivateRoute, SideBar } from './components';
+import { Modal, PrivateRoute, SideBar } from './components';
 import {
 	Authorization,
 	MainPage,
@@ -44,6 +44,7 @@ function App() {
 
 	return (
 		<>
+			<Modal />
 			<Routes>
 				<Route
 					path="/"

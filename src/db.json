@@ -15,15 +15,16 @@
       "email": "maria@example.com",
       "password": "qwe123",
       "created_at": "2024-04-26T11:15:00Z"
+    },
+    {
+      "login": "sergey",
+      "password": "qwe123",
+      "registered_at": "2043-09-04 22:56",
+      "role_id": 2,
+      "id": "avoMAut"
     }
   ],
   "categories": [
-    {
-      "userId": "1",
-      "name": "Продукты",
-      "type": "income",
-      "id": "jOTelhT"
-    },
     {
       "userId": "2",
       "name": "rerererre",
@@ -37,10 +38,10 @@
       "id": "YVnaTO5"
     },
     {
-      "userId": "1",
-      "name": "Апельсины",
-      "type": "expense",
-      "id": "RTY3ANV"
+      "userId": "avoMAut",
+      "name": "233232",
+      "type": "income",
+      "id": "ZWmq7Ul"
     }
   ],
   "transactions": [
@@ -71,18 +72,18 @@
   ],
   "accounts": [
     {
-      "userId": "1",
-      "name": "Сбербанк",
-      "type_accounts": "2",
-      "created_at": "2024-11-05T09:28:57.138Z",
-      "id": "1"
-    },
-    {
       "userId": "2",
       "name": "erferferferf",
       "type_accounts": "1",
       "created_at": "2024-11-05T15:54:42.525Z",
       "id": "vH6JPBN"
+    },
+    {
+      "userId": "1",
+      "name": "32у23",
+      "type_accounts": "1",
+      "created_at": "2024-11-06T11:28:45.390Z",
+      "id": "4ivXjeR"
     }
   ],
   "sessions": [
@@ -103,6 +104,55 @@
         "password": "qwe123"
       },
       "id": 2
+    },
+    {
+      "hash": "0.54657189081429313759485921764280647039413452148438",
+      "user": {
+        "id": "avoMAut",
+        "login": "sergey",
+        "password": "qwe123",
+        "registeredAt": "2043-09-04 22:56",
+        "roleId": 2
+      },
+      "id": 3
+    },
+    {
+      "hash": "0.70730624797425578620391206641215831041336059570313",
+      "user": {
+        "id": "1",
+        "login": "ivan",
+        "password": "qwe123"
+      },
+      "id": 4
+    },
+    {
+      "hash": "0.75664255310926531450377297005616128444671630859375",
+      "user": {
+        "id": "1",
+        "login": "ivan",
+        "password": "qwe123"
+      },
+      "id": 6
+    },
+    {
+      "hash": "0.33428577261152647714936847478384152054786682128906",
+      "user": {
+        "id": "avoMAut",
+        "login": "sergey",
+        "password": "qwe123",
+        "registeredAt": "2043-09-04 22:56",
+        "roleId": 2
+      },
+      "id": 7
+    },
+    {
+      "hash": "0.15395980727796731990508760645752772688865661621094",
+      "user": {
+        "id": "1",
+        "login": "ivan",
+        "password": "qwe123"
+      },
+      "id": 8
     }
   ]
 }

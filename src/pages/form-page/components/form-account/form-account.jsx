@@ -15,7 +15,7 @@ const FormAccountContainer = ({ className, onSave }) => {
 	const [select, setSelect] = useState('');
 	const [nameAccount, setNameAccount] = useState('');
 	const [editing, setEditing] = useState(false);
-
+	const [errors, setErrors] = useState({});
 	const typeAccounts = useSelector(selectAccountsTypes);
 	const { accounts } = useSelector(selectAccounts);
 	const isCreating = !!useMatch('/account');
@@ -23,6 +23,18 @@ const FormAccountContainer = ({ className, onSave }) => {
 	const userId = useSelector(selectUserId);
 
 	const { id: idAccount } = useParams();
+
+	const validateForm = () => {
+		const newErrors = {};
+		if (!select) {
+			newErrors.select = 'Тип категории обязателен';
+		}
+		if (!nameAccount) {
+			newErrors.name = 'Имя категории обязательно';
+		}
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0; // Возвращаем true, если нет ошибок
+	};
 
 	useEffect(() => {
 		if (isCreating) {
@@ -49,16 +61,19 @@ const FormAccountContainer = ({ className, onSave }) => {
 	};
 
 	const handleClick = (event) => {
-		const data = {
-			id: !isCreating ? idAccount : '',
-			userId,
-			name: nameAccount,
-			typeAccount: select,
-		};
-		if (isCreating) {
-			onSave(event, saveAccountAsync(requestServer, data));
-		} else {
-			onSave(event, 'saveAccounty', data);
+		event.preventDefault(); // Отменяем стандартное поведение формы
+		if (validateForm()) {
+			const data = {
+				id: !isCreating ? idAccount : '',
+				userId,
+				name: nameAccount,
+				typeAccount: select,
+			};
+			if (isCreating) {
+				onSave(event, saveAccountAsync(requestServer, data));
+			} else {
+				onSave(event, 'saveAccount', data);
+			}
 		}
 	};
 
@@ -118,6 +133,7 @@ const FormAccountContainer = ({ className, onSave }) => {
 					</>
 				)}
 			</div>
+			{errors.select && <div style={{ color: 'red' }}>{errors.select}</div>}
 			<div>Название счета</div>
 			<Input
 				width="100%"
@@ -125,7 +141,7 @@ const FormAccountContainer = ({ className, onSave }) => {
 				onChange={onNameChange}
 				value={nameAccount}
 			/>
-
+			{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
 			<Button width="50%" onClick={handleClick}>
 				Отправить
 			</Button>

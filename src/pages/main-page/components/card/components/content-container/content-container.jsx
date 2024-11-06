@@ -4,7 +4,7 @@ const Content = ({ className, name = '', children }) => {
 	return (
 		<div className={className}>
 			{name && <h5>{name}</h5>}
-			{children.length ? children : 'Нет записей'}
+			{children ? children : 'Нет записей'}
 		</div>
 	);
 };

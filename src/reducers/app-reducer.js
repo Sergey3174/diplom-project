@@ -16,6 +16,7 @@ const initialAppState = {
 			category: '',
 		},
 	},
+	isLoading: false,
 };
 
 export const appReducer = (state = initialAppState, action) => {
@@ -48,6 +49,11 @@ export const appReducer = (state = initialAppState, action) => {
 			return {
 				...state,
 				filter: initialAppState.filter,
+			};
+		case ACTION_TYPE.SET_LOADING:
+			return {
+				...state,
+				isLoading: !state.isLoading,
 			};
 		default:
 			return state;

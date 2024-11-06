@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { StyleSpan } from '../../../../../../components';
 
-const ItemCardContainer = ({ className, to, name, id, amount, date = '', type }) => {
+const ItemCardContainer = ({ className, to, name, id, amount, date, type }) => {
 	const navigate = useNavigate();
 
 	return (
-		<div className={className} key={id} onClick={() => navigate(`${to}/${id}`)}>
-			{date ?? <span>{date}</span>}
+		<div
+			className={className}
+			key={id}
+			onClick={to ? () => navigate(`${to}/${id}`) : undefined}
+		>
+			{date && <span>{date}</span>}
 			<span>{name}</span>
 			<StyleSpan type={type}>{amount}</StyleSpan>
 		</div>

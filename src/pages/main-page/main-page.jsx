@@ -4,6 +4,8 @@ import { useRequestData, useRequestTransactions } from '../../hooks';
 import { ContentContainer, ItemCard } from './components/card/components';
 import { useSelector } from 'react-redux';
 import { selectAccounts, selectCategories, selectUserId } from '../../selectors';
+import { StyleSpan } from '../../components';
+import { calculateBalance, filterType } from '../../utils';
 
 const MainPageContainer = ({ className }) => {
 	const userId = useSelector(selectUserId);
@@ -14,48 +16,77 @@ const MainPageContainer = ({ className }) => {
 	// const lastIncomeTransactions = useRequestTransactions('income');
 	// const lastExpenseTransactions = useRequestTransactions('expense');
 
+	const incomeCategories = filterType(categories, 'income');
+	const expenseCategories = filterType(categories, 'expense');
+
+	const balance = calculateBalance(accounts);
+
 	return (
 		<div className={className}>
+			<Card name="Общая статистика" flex="1 1 100%;">
+				<ContentContainer>
+					<ItemCard
+						name="Общий баланс"
+						amount={balance}
+						type={balance >= 0 ? 'income' : 'expense'}
+					/>
+				</ContentContainer>
+				<ContentContainer>
+					<ItemCard
+						name="Доходы"
+						type="income"
+						amount={calculateBalance(incomeCategories)}
+					/>
+				</ContentContainer>
+				<ContentContainer>
+					<ItemCard
+						name="Расходы"
+						type="expense"
+						amount={calculateBalance(expenseCategories)}
+					/>
+				</ContentContainer>
+			</Card>
 			<Card to="/transaction" name="Доходы">
 				<ContentContainer>
-					{lastIncomeTransactions.map(
-						({ id, description, transactionDate, amount, type }) => (
-							<ItemCard
-								to="/transaction"
-								date={transactionDate}
-								name={description}
-								id={id}
-								amount={amount}
-								key={id}
-								type={type}
-							/>
-						),
-					)}
+					{lastIncomeTransactions.length &&
+						lastIncomeTransactions.map(
+							({ id, description, transactionDate, amount, type }) => (
+								<ItemCard
+									to="/transaction"
+									date={transactionDate}
+									name={description}
+									id={id}
+									amount={amount}
+									key={id}
+									type={type}
+								/>
+							),
+						)}
 				</ContentContainer>
 			</Card>
 			<Card to="/transaction" name="Расходы">
 				<ContentContainer>
-					{lastExpenseTransactions.map(
-						({ id, description, transactionDate, amount, type }) => (
-							<ItemCard
-								to="/transaction"
-								date={transactionDate}
-								name={description}
-								id={id}
-								amount={amount}
-								key={id}
-								type={type}
-							/>
-						),
-					)}
+					{lastExpenseTransactions.length &&
+						lastExpenseTransactions.map(
+							({ id, description, transactionDate, amount, type }) => (
+								<ItemCard
+									to="/transaction"
+									date={transactionDate}
+									name={description}
+									id={id}
+									amount={amount}
+									key={id}
+									type={type}
+								/>
+							),
+						)}
 				</ContentContainer>
 			</Card>
 
 			<Card to="/category" name="Категории">
 				<ContentContainer name="Доходы">
-					{categories
-						.filter(({ type }) => type === 'income')
-						.map(({ id, name, amount, type }) => (
+					{incomeCategories.length &&
+						incomeCategories.map(({ id, name, amount, type }) => (
 							<ItemCard
 								to="/category"
 								name={name}
@@ -67,9 +98,8 @@ const MainPageContainer = ({ className }) => {
 						))}
 				</ContentContainer>
 				<ContentContainer name="Расходы">
-					{categories
-						.filter(({ type }) => type === 'expense')
-						.map(({ id, name, amount, type }) => (
+					{expenseCategories.length &&
+						expenseCategories.map(({ id, name, amount, type }) => (
 							<ItemCard
 								to="/category"
 								name={name}
@@ -84,16 +114,17 @@ const MainPageContainer = ({ className }) => {
 
 			<Card to="/account" name="Счета">
 				<ContentContainer>
-					{accounts.map(({ id, name, amount }) => (
-						<ItemCard
-							to="/account"
-							name={name}
-							id={id}
-							amount={amount}
-							key={id}
-							type={amount >= 0 ? 'income' : 'expense'}
-						/>
-					))}
+					{accounts.length &&
+						accounts.map(({ id, name, amount }) => (
+							<ItemCard
+								to="/account"
+								name={name}
+								id={id}
+								amount={amount}
+								key={id}
+								type={amount >= 0 ? 'income' : 'expense'}
+							/>
+						))}
 				</ContentContainer>
 			</Card>
 		</div>
@@ -103,7 +134,7 @@ const MainPageContainer = ({ className }) => {
 export const MainPage = styled(MainPageContainer)`
 	margin-top: 15px;
 	display: flex;
-	gap: 10px;
+	gap: 15px;
 	flex-wrap: wrap;
 	justify-content: center;
 `;

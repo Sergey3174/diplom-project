@@ -8,23 +8,18 @@ import TRASH from '../../../../assets/trash.png';
 import { useServerRequest } from '../../../../hooks';
 import { saveCategoryAsync } from '../../../../actions';
 
-const FormCategory = ({ className, onSave }) => {
+const FormCategoryContainer = ({ className, onSave }) => {
 	const [select, setSelect] = useState('');
 	const [nameCategory, setNameCategory] = useState('');
+	const [errors, setErrors] = useState({});
 	const requestServer = useServerRequest();
-
 	const isCreating = !!useMatch('/category');
-
 	const userId = useSelector(selectUserId);
-
 	const { id: idCategory } = useParams();
-
 	const { categories } = useSelector(selectCategories);
 
 	useEffect(() => {
-		if (isCreating) {
-			return;
-		} else {
+		if (!isCreating) {
 			const category = categories.find((cat) => cat.id === idCategory);
 			setSelect(category.type);
 			setNameCategory(category.name);
@@ -35,17 +30,32 @@ const FormCategory = ({ className, onSave }) => {
 
 	const handleSelectChange = (name, value) => setSelect(value);
 
+	const validateForm = () => {
+		const newErrors = {};
+		if (!select) {
+			newErrors.select = 'Тип категории обязателен';
+		}
+		if (!nameCategory) {
+			newErrors.name = 'Имя категории обязательно';
+		}
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0; // Возвращаем true, если нет ошибок
+	};
+
 	const handleClick = (event) => {
-		const data = {
-			id: !isCreating ? idCategory : '',
-			userId,
-			name: nameCategory,
-			type: select,
-		};
-		if (isCreating) {
-			onSave(event, saveCategoryAsync(requestServer, data));
-		} else {
-			onSave(event, 'saveCategory', data);
+		event.preventDefault(); // Отменяем стандартное поведение формы
+		if (validateForm()) {
+			const data = {
+				id: !isCreating ? idCategory : '',
+				userId,
+				name: nameCategory,
+				type: select,
+			};
+			onSave(
+				event,
+				isCreating ? saveCategoryAsync(requestServer, data) : 'saveCategory',
+				data,
+			);
 		}
 	};
 
@@ -73,8 +83,11 @@ const FormCategory = ({ className, onSave }) => {
 				value={select}
 				onSelectChange={handleSelectChange}
 			/>
+			{errors.select && <div style={{ color: 'red' }}>{errors.select}</div>}
+
 			<div>Описание</div>
 			<Input width="100%" onChange={onNameChange} value={nameCategory} />
+			{errors.name && <div style={{ color: 'red' }}>{errors.name}</div>}
 
 			<Button width="50%" onClick={handleClick}>
 				Отправить
@@ -83,7 +96,7 @@ const FormCategory = ({ className, onSave }) => {
 	);
 };
 
-export const FormCategoty = styled(FormCategory)`
+export const FormCategory = styled(FormCategoryContainer)`
 	width: 80%;
 	margin: 0 auto;
 	position: relative;

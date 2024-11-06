@@ -4,7 +4,7 @@ import PENCIL from '../../../../assets/pencil.png';
 import { useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../../../hooks';
 import { IconButton, StyleSpan } from '../../../../components';
-import { removeTransactionAsync } from '../../../../actions';
+import { CLOSE_MODAL, openModal, removeTransactionAsync } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 const HistoryItemContainer = ({
@@ -23,10 +23,25 @@ const HistoryItemContainer = ({
 	const serverRequest = useServerRequest();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const deleteItem = () => {
 		dispatch(
-			removeTransactionAsync(serverRequest, { id, userId, categoryId, accountId }),
-		).then(refreshFlag);
+			openModal({
+				text: 'Удалить операцию?',
+				onConfirm: () => {
+					dispatch(
+						removeTransactionAsync(serverRequest, {
+							id,
+							userId,
+							categoryId,
+							accountId,
+						}),
+					).then(() => refreshFlag());
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
 	};
 	return (
 		<div className={className}>

@@ -5,7 +5,6 @@ import { updateCategory } from './update-category';
 
 export const updateTransactionAsync = (requestServer, newTransactionData) => (dispatch) =>
 	requestServer('saveTransaction', newTransactionData).then((data) => {
-		console.log(newTransactionData);
 		if (data.res) {
 			if (data.res.newCategory) {
 				data.res.newCategory.forEach((cat) => dispatch(updateCategory(cat)));

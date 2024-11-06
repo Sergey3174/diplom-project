@@ -3,6 +3,7 @@ import { calculateAmount } from '../utils';
 
 export const removeTransactionServer = async (params) => {
 	await deleteTransaction(params.id);
+
 	const [{ categories }, { accounts }, { transactions }] = await Promise.all([
 		getCategories(params.userId),
 		getAccounts(params.userId),

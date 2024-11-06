@@ -6,3 +6,5 @@ export * from './private-route/private-route';
 export * from './select/select';
 export * from './icon-button/icon-button';
 export * from './style-span/style-span';
+export * from './loader/loader';
+export * from './modal/modal';

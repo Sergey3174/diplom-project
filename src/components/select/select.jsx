@@ -1,40 +1,39 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
-const SelectContainer = ({
-	className,
-	data,
-	value,
-	onSelectChange,
-	name,
-	label = null,
-}) => {
-	const handleSelectChange = (target) => {
-		const newValue = target.value;
-		onSelectChange(name, newValue);
-	};
+const SelectContainer = forwardRef(
+	({ className, data, value, onSelectChange, name, label = null }, ref) => {
+		const handleSelectChange = (target) => {
+			const newValue = target.value;
+			onSelectChange(name, newValue);
+		};
 
-	return (
-		<div className={className}>
-			{label && (
-				<label className="label-style" htmlFor="select1">
-					{label}
-				</label>
-			)}
-			<select
-				className="select-style"
-				value={value}
-				onChange={({ target }) => handleSelectChange(target)}
-			>
-				{!value && <option value="">Выберите</option>}
-				{data.map((item) => (
-					<option key={item.id} value={item.id}>
-						{item.name}
-					</option>
-				))}
-			</select>
-		</div>
-	);
-};
+		return (
+			<div className={className}>
+				{label && (
+					<label className="label-style" htmlFor="select1">
+						{label}
+					</label>
+				)}
+				<select
+					className="select-style"
+					value={value}
+					onChange={({ target }) => handleSelectChange(target)}
+					ref={ref}
+				>
+					{!value && <option value="">Выберите</option>}
+					{data.map((item) => (
+						<option key={item.id} value={item.id}>
+							{item.name}
+						</option>
+					))}
+				</select>
+			</div>
+		);
+	},
+);
+
+SelectContainer.displayName = 'SelectContainer';
 
 export const Select = styled(SelectContainer)`
 	width: ${({ width = '100%' }) => width};

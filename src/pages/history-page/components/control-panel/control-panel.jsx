@@ -6,6 +6,7 @@ import { RESET_FILTER, setFilter } from '../../../../actions';
 import UPDATE from '../../../../assets/update.png';
 import ADD_ICON from '../../../../assets/add-icon.svg';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 const ControlPanelContainer = ({ className }) => {
 	const { accounts } = useSelector(selectAccounts);
 	const { categories } = useSelector(selectCategories);
@@ -20,6 +21,10 @@ const ControlPanelContainer = ({ className }) => {
 	const handleResetFilter = () => {
 		dispatch(RESET_FILTER);
 	};
+
+	useEffect(() => {
+		return () => dispatch(RESET_FILTER);
+	}, [dispatch]);
 
 	return (
 		<div className={className}>

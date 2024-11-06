@@ -6,7 +6,7 @@ export const fetchData = async (userId) => {
 		getCategories(userId),
 		getAccounts(userId),
 		getAccountsTypes(),
-		getTransactions(userId, 1, '', {}),
+		getTransactions(userId, '', '', {}),
 	]);
 
 	const newCategories = categories.categories.map((cat) => ({

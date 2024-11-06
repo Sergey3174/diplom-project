@@ -3,11 +3,12 @@ import { getTransactions } from '../api';
 export const fecthAccountBalance = async (userId, accountId) => {
 	const { transactions } = await getTransactions(
 		userId,
-		1,
 		'',
+		null,
 		{ account: accountId },
 		'asc',
 	);
+	console.log(transactions);
 	const balanceDateTransactions = transactions.reduce(
 		(acc, { transactionDate, amount, type }) => {
 			const currentAmount = acc.currentAmount;
