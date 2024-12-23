@@ -21,3 +21,4 @@ export * from './add-type-account';
 export * from './fetch-account-balance';
 export * from './remove-account';
 export * from './remove-category';
+export * from './save-user';

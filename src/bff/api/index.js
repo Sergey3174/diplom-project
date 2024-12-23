@@ -30,3 +30,6 @@ export * from './add-account-type';
 export * from './delete-account';
 export * from './delete-category';
 export * from './get-transaction';
+export * from './update-user';
+export * from './update-password';
+export * from './update-login';

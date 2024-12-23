@@ -29,3 +29,4 @@ export * from './save-transaction-async';
 export * from './update-category';
 export * from './update-account';
 export * from './update-transaction-async';
+export * from './update-user';

@@ -61,7 +61,7 @@ const FormAccountContainer = ({ className, onSave }) => {
 	};
 
 	const handleClick = (event) => {
-		event.preventDefault(); // Отменяем стандартное поведение формы
+		event.preventDefault();
 		if (validateForm()) {
 			const data = {
 				id: !isCreating ? idAccount : '',
